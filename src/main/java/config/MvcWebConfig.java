@@ -28,7 +28,7 @@ public class MvcWebConfig implements WebMvcConfigurer
 
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations("/WEB-INF/static/");
+        registry.addResourceHandler("**").addResourceLocations("/resources/");
     }
 
     /**
@@ -47,7 +47,7 @@ public class MvcWebConfig implements WebMvcConfigurer
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("WEB-INF/static/html/");
+        templateResolver.setPrefix("WEB-INF/html/");
         templateResolver.setSuffix(".html");
         return templateResolver;
     }
