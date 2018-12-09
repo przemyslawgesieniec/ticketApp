@@ -17,8 +17,8 @@ public class MvcWebApplicationInitializer implements WebApplicationInitializer {
         ctx.register(MvcWebConfig.class);
 
         servletContext.addListener(new ContextLoaderListener(ctx));
-        servletContext.addFilter("springSecurityFilterChain", new DelegatingFilterProxy("springSecurityFilterChain"))
-                .addMappingForUrlPatterns(null, false, "/*");
+//        servletContext.addFilter("springSecurityFilterChain", new DelegatingFilterProxy("springSecurityFilterChain"))
+//                .addMappingForUrlPatterns(null, false, "/*");
 
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));
         dispatcher.setLoadOnStartup(1);

@@ -7,12 +7,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
+@RequestMapping("/index")
 public class IndexController {
 
-    @RequestMapping(value={"/index",""}, method = RequestMethod.GET)
-    public String index(Model model) {
+    @RequestMapping(value={"/user"}, method = RequestMethod.GET)
+    public String getUserIndex(Model model) {
 
-        model.addAttribute("name", "adam");
+        model.addAttribute("name", "user");
+        return "index";
+    }
+
+    @RequestMapping(value={"/admin"}, method = RequestMethod.GET)
+    public String getAdminIndex(Model model) {
+
+        model.addAttribute("name", "admin");
         return "index";
     }
 }
