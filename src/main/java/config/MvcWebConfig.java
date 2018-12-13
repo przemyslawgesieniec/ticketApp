@@ -75,4 +75,9 @@ public class MvcWebConfig implements WebMvcConfigurer
         registry.viewResolver(resolver);
     }
 
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder(){
+       return new BCryptPasswordEncoder();
+    }
+
 }
