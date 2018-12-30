@@ -26,6 +26,14 @@ public class Role {
         this.name = name;
     }
 
+    public Role() {
+    }
+
+    public Role(String name, Set<User> usersRoles) {
+        this.name = name;
+        this.usersRoles = usersRoles;
+    }
+
     @Column(name = "user_role_name")
     private String name;
 

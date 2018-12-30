@@ -11,6 +11,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
 
     @Id
@@ -24,13 +25,13 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "user_email")
+    @Column(name = "email")
     private String email;
 
     @Column(name = "user_password")
     private String password;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinTable(
             name = "user_user_roles",
             joinColumns = { @JoinColumn(name="user_id")},
