@@ -1,6 +1,6 @@
 package main.java.config.security;
 
-import main.java.service.DaoUserDetailsService;
+import main.java.service.serviceImpl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -41,7 +41,7 @@ public class  WebSecurityConfig extends WebSecurityConfigurerAdapter {
         protected BCryptPasswordEncoder bCryptPasswordEncoder;
 
         @Autowired
-        protected DaoUserDetailsService userDetailsService;
+        protected UserServiceImpl userDetailsService;
 
             @Override
             public void init(AuthenticationManagerBuilder auth) throws Exception {
