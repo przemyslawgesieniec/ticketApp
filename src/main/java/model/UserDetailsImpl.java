@@ -1,6 +1,5 @@
 package main.java.model;
 
-import main.java.model.entity.Role;
 import main.java.model.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,8 +9,6 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 public class UserDetailsImpl implements UserDetails {
-
-    //todo implement
 
     private User user;
 

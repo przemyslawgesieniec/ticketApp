@@ -4,69 +4,77 @@
     <meta charset="UTF-8">
     <title>Registration</title>
 
-    <link rel="stylesheet" th:href="@{/css/main.css}"  href="../../resources/css/main.css" />
-    <link rel="stylesheet" th:href="@{/css/materialize.min.css}"  href="../../resources/css/materialize.min.css" />
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../../resources/css/main.css"/>
+    <link rel="stylesheet" th:href="@{/css/materialize.min.css}" href="../../resources/css/materialize.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/materializeCustomizer.css}"
+          href="../../resources/css/materializeCustomizer.css"/>
 
 </head>
 <body>
-<!--method="post" action="/login-->
+<div class="backgroundPhoto"></div>
 
-<div class="row">
-    <div class="col l6 offset-l3">
-        <div class="card hoverable darken-1 registerCard">
-            <div class="card-content black-text">
-                <div class="col l12">
-                    <h7>REGISTRATION</h7>
-                </div>
-                <!--/*@thymesVar id="user" type="main.java.dto.UserDto"*/-->
-                <form class="row" th:action="@{/register}" th:object="${user}" method="post">
-                    <!--NAME-->
-                    <div class="input-field col l6 s12">
-                        <input placeholder="Name" th:field="*{name}" id="first_name" name="first_name" type="text" class="validate"/>
-                    </div>
-                    <!--SURNAME-->
-                    <div class="input-field col l6 s12">
-                        <input placeholder="Last Name" th:field="*{lastName}" id="last_name"  name="last_name"  type="text" class="validate required"/>
-                    </div>
-                    <!--EMAIL-->
-
-                    <div class="input-field col l12 s12" th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
-                        <input id="email"  name="email" th:field="*{email}" placeholder="Email" type="email" class="validate required"/>
-                    </div>
-                    <!--PASSWORS-->
-                    <div class="input-field col l6 s12">
-                        <input placeholder="Password" th:field="*{password}"  id="password" name="password"
-                               type="password" class="validate"/>
-                    </div>
-                    <!--REPEAT PASSWORD-->
-                    <div class="input-field col l6 s12">
-                        <input placeholder="Repeat password"
-                               data-error="Passwords do not match" id="passwordCfm" type="password"
-                               class="validate"/>
-                    </div>
-
-                    <div class="row" style="margin-top: 5rem;">
-                        <div class="col l12 m12 s12">
-                            <button class="waves-effect waves-light btn-large loginButton"  name="register" type="submit" >Register</button>
+<div class="container">
+    <div class="row">
+        <div class="col l6 offset-l3">
+            <div class="card hoverable darken-1 registerCard">
+                <div class="card-content black-text">
+                    <div class="row">
+                        <div class="col l12">
+                            <h5>Please register</h5>
                         </div>
                     </div>
-                </form>
+                    <!--/*@thymesVar id="user" type="main.java.dto.UserDto"*/-->
+                    <form class="row" th:action="@{/register}" th:object="${user}" method="post">
+                        <!--NAME-->
+                        <div class="input-field col l6 s12">
+                            <input placeholder="Name" th:field="*{name}" id="first_name" name="first_name" type="text"
+                                   class="validate"/>
+                        </div>
+                        <!--SURNAME-->
+                        <div class="input-field col l6 s12">
+                            <input placeholder="Last Name" th:field="*{lastName}" id="last_name" name="last_name"
+                                   type="text" class="validate required"/>
+                        </div>
+                        <!--EMAIL-->
 
+                        <div class="input-field col l12 s12"
+                             th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
+                            <input id="email" name="email" th:field="*{email}" placeholder="Email" type="email"
+                                   class="validate required"/>
+                        </div>
+                        <!--PASSWORS-->
+                        <div class="input-field col l6 s12">
+                            <input placeholder="Password" th:field="*{password}" id="password" name="password"
+                                   type="password" class="validate"/>
+                        </div>
+                        <!--REPEAT PASSWORD-->
+                        <div class="input-field col l6 s12">
+                            <input placeholder="Repeat password"
+                                   data-error="Passwords do not match" id="passwordCfm" type="password"
+                                   class="validate"/>
+                        </div>
 
+                        <div class="col l12 m12 s12 button-wrapper">
+                            <button class="waves-effect waves-light btn-large" name="register"
+                                    type="submit">Register
+                            </button>
+                        </div>
 
-                <div class="row right-align">
-                    <div class="col l12 m12 s12">
-                        <label for="loginPage">Already have an account?</label>
-                    </div>
-                    <div class="col l12 m12 s12">
-                        <a href="login.html" id="loginPage" style="color: black">Log in</a>
+                    </form>
+
+                    <div class="row right-align">
+                        <div class="col l12 m12 s12">
+                            <label for="loginPage">Already have an account?</label>
+                        </div>
+                        <div class="col l12 m12 s12">
+                            <a href="login" id="loginPage" style="color: black">Log in</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 
 </body>

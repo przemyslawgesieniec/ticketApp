@@ -1,6 +1,23 @@
-.color1 {
-    color: black;
+.backgroundPhoto{
+    background-image: url('../photos/concert.jpg');
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -100;
+
+    /* START */
+    /* START */
+    /* START */
+    /* START */
+
+    /* You can adjust the blur-radius as you'd like */
+    filter: blur(8px);
 }
-.color2 {
-    color: red;
+.button-wrapper{
+
+    margin-top: 5rem;
 }
