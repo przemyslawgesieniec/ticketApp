@@ -28,39 +28,51 @@
                     <form class="row" th:action="@{/register}" th:object="${user}" method="post">
                         <!--NAME-->
                         <div class="input-field col l6 s12">
-                            <!--th:if="${#fields.hasErrors('companyName')}" th:errors="*{companyName}">-->
-                            <input placeholder="Name" th:field="*{name}" id="first_name" name="first_name" type="text"
-                                   class="validate"/>
-                            <span class="helper-text" data-error="wrong">Helper text</span>
+                            <input placeholder="Name" th:field="*{name}" id="first_name" name="first_name" type="text"/>
+                            <span class="helper-text error-message"
+                                  th:if="${#fields.hasErrors('name')}"
+                                  th:errors="*{name}">Name Error</span>
                         </div>
-                        <!--SURNAME-->
-                        <div class="input-field col l6 s12"
-                             th:classappend="${#fields.hasErrors('lastName')}? 'has-error':''">
-                            <input placeholder="Last Name" th:field="*{lastName}" id="last_name" name="last_name"
-                                   type="text" class="validate required"/>
-                        </div>
-                        <!--EMAIL-->
 
-                        <div class="input-field col l12 s12"
-                             th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
+                        <!--SURNAME-->
+                        <div class="input-field col l6 s12">
+                            <input placeholder="Last Name" th:field="*{lastName}" id="lastName" name="lastName"
+                                   type="text"/>
+                            <span class="helper-text error-message"
+                                  th:if="${#fields.hasErrors('lastName')}"
+                                  th:errors="*{lastName}">Last Name Error</span>
+                        </div>
+
+                        <!--EMAIL-->
+                        <div class="input-field col l12 s12">
                             <input id="email" name="email" th:field="*{email}" placeholder="Email" type="email"
                                    class="validate required"/>
+                            <span class="helper-text error-message"
+                                  th:if="${#fields.hasErrors('email')}"
+                                  th:errors="*{email}"> Email Error</span>
                         </div>
+
                         <!--PASSWORS-->
                         <div class="input-field col l6 s12">
                             <input placeholder="Password" th:field="*{password}" id="password" name="password"
                                    type="password" class="validate"/>
+                            <span class="helper-text error-message"
+                                  th:if="${#fields.hasErrors('password')}"
+                                  th:errors="*{password}">Password Error</span>
                         </div>
+
                         <!--REPEAT PASSWORD-->
                         <div class="input-field col l6 s12">
                             <input placeholder="Repeat password"
                                    data-error="Passwords do not match" id="passwordCfm" type="password"
                                    class="validate"/>
                         </div>
+
                         <!--CAPTCHA-->
                         <div class="col l12 m12 s12 recaptcha-wrapper">
                             <div class="g-recaptcha" data-sitekey="6LeHCoYUAAAAAHjm9elR4exSW0icbTHtFycQQ1T7"></div>
                         </div>
+
                         <!--SUBMIT FORM-->
                         <div class="col l12 m12 s12 button-wrapper">
                             <button class="waves-effect waves-light btn-large" name="register"

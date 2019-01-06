@@ -7,6 +7,7 @@ import main.java.service.serviceImpl.ReCaptchaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,7 +35,7 @@ public class RegistrationController {
 
     // Process form input data
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView processRegistrationForm(ModelAndView modelAndView, @Valid UserDto user, BindingResult bindingResult, HttpServletRequest request) {
+    public ModelAndView processRegistrationForm(@ModelAttribute("user") @Valid UserDto user, BindingResult bindingResult, HttpServletRequest request) {
 
         //TODO: create registration service and move logic there
 
