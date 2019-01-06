@@ -8,6 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/materialize.min.css}" href="../../resources/css/materialize.min.css"/>
     <link rel="stylesheet" th:href="@{/css/materializeCustomizer.css}"
           href="../../resources/css/materializeCustomizer.css"/>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
 </head>
 <body>
@@ -27,11 +28,14 @@
                     <form class="row" th:action="@{/register}" th:object="${user}" method="post">
                         <!--NAME-->
                         <div class="input-field col l6 s12">
+                            <!--th:if="${#fields.hasErrors('companyName')}" th:errors="*{companyName}">-->
                             <input placeholder="Name" th:field="*{name}" id="first_name" name="first_name" type="text"
                                    class="validate"/>
+                            <span class="helper-text" data-error="wrong">Helper text</span>
                         </div>
                         <!--SURNAME-->
-                        <div class="input-field col l6 s12">
+                        <div class="input-field col l6 s12"
+                             th:classappend="${#fields.hasErrors('lastName')}? 'has-error':''">
                             <input placeholder="Last Name" th:field="*{lastName}" id="last_name" name="last_name"
                                    type="text" class="validate required"/>
                         </div>
@@ -53,13 +57,16 @@
                                    data-error="Passwords do not match" id="passwordCfm" type="password"
                                    class="validate"/>
                         </div>
-
+                        <!--CAPTCHA-->
+                        <div class="col l12 m12 s12 recaptcha-wrapper">
+                            <div class="g-recaptcha" data-sitekey="6LeHCoYUAAAAAHjm9elR4exSW0icbTHtFycQQ1T7"></div>
+                        </div>
+                        <!--SUBMIT FORM-->
                         <div class="col l12 m12 s12 button-wrapper">
                             <button class="waves-effect waves-light btn-large" name="register"
                                     type="submit">Register
                             </button>
                         </div>
-
                     </form>
 
                     <div class="row right-align">

@@ -18,6 +18,9 @@
     filter: blur(8px);
 }
 .button-wrapper{
+    margin-top: 3rem;
+}
+.recaptcha-wrapper{
+    margin-top: 2rem;
 
-    margin-top: 5rem;
 }
