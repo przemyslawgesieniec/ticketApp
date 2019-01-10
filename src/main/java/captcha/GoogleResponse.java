@@ -1,4 +1,4 @@
-package main.java.rest;
+package main.java.captcha;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,7 +22,5 @@ public class GoogleResponse {
 
     @JsonProperty("hostname")
     private String hostname;
-
-
 
 }

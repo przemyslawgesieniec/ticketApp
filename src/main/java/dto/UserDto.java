@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.Data;
 import main.java.validator.constraintAnnotations.ValidEmail;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -28,4 +27,28 @@ public class UserDto {
     private String password;
 
     private String reCaptcha;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UserDto)) return false;
+
+        UserDto userDto = (UserDto) o;
+
+        if (!getName().equals(userDto.getName())) return false;
+        if (!getLastName().equals(userDto.getLastName())) return false;
+        if (!getEmail().equals(userDto.getEmail())) return false;
+        return getPassword().equals(userDto.getPassword());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getName().hashCode();
+        result = 31 * result + getLastName().hashCode();
+        result = 31 * result + getEmail().hashCode();
+        result = 31 * result + getPassword().hashCode();
+        return result;
+    }
+
+
 }

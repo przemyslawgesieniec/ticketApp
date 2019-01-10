@@ -2,7 +2,10 @@ package main.java.controllers;
 
 import main.java.dto.UserDto;
 import main.java.model.entity.User;
+import main.java.model.entity.VerificationToken;
 import main.java.service.UserService;
+import main.java.service.UserVerificationService;
+import main.java.service.serviceImpl.EmailServiceImpl;
 import main.java.service.serviceImpl.ReCaptchaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,10 +24,16 @@ public class RegistrationController {
 
 
     @Autowired
-    UserService userService;
+    private UserService userService;
+
+    @Autowired
+    private UserVerificationService userVerificationService;
 
     @Autowired
     private ReCaptchaService captchaService;
+
+    @Autowired
+    private EmailServiceImpl emailService;
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView showRegistrationPage(ModelAndView modelAndView, UserDto user) {
@@ -37,7 +46,7 @@ public class RegistrationController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ModelAndView processRegistrationForm(@ModelAttribute("user") @Valid UserDto user, BindingResult bindingResult, HttpServletRequest request) {
 
-        //TODO: create registration service and move logic there
+        //TODO: create form validation service
 
         Optional<User> registeredUser = userService.findByEmail(user.getEmail());
 
@@ -55,7 +64,9 @@ public class RegistrationController {
             return new ModelAndView("register","user", user);
         }
 
-        userService.save(user);
+        VerificationToken token = userVerificationService.generateAndPersistToken(userService.save(user));
+        emailService.sendRegistrationConfirmationMessage(user.getEmail(),token.getToken());
+
         return new ModelAndView("login","user", user);
     }
 

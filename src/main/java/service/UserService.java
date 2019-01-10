@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface UserService  extends UserDetailsService {
 
     Optional<User> findByEmail(String email);
-
+    User getUserByEmail(String email);
     User save(UserDto registrationRequestParams);
+    void activateUser(String email);
 }

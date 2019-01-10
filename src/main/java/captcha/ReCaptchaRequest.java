@@ -1,4 +1,4 @@
-package main.java.rest;
+package main.java.captcha;
 
 import lombok.Builder;
 

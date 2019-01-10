@@ -50,7 +50,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;//TODO: refactor
+        return user.isEnabled();
     }
 
 }

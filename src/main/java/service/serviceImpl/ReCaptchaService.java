@@ -1,8 +1,8 @@
 package main.java.service.serviceImpl;
 
 import main.java.config.recapcha.CaptchaConfiguration;
-import main.java.rest.GoogleResponse;
-import main.java.rest.ReCaptchaRequest;
+import main.java.captcha.GoogleResponse;
+import main.java.captcha.ReCaptchaRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

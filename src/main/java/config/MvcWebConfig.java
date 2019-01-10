@@ -9,6 +9,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
@@ -19,12 +21,13 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
+import java.util.Properties;
+
 @Configuration
 @EnableWebMvc
-@Import({ WebSecurityConfig.class })
+@Import({WebSecurityConfig.class})
 @ComponentScan(basePackages = {"main.java.controllers"})
-public class MvcWebConfig implements WebMvcConfigurer
-{
+public class MvcWebConfig implements WebMvcConfigurer {
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -49,7 +52,7 @@ public class MvcWebConfig implements WebMvcConfigurer
 
 
     /**
-     *Thymleaf template view resolver
+     * Thymleaf template view resolver
      */
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
@@ -68,16 +71,35 @@ public class MvcWebConfig implements WebMvcConfigurer
         return templateEngine;
     }
 
-    public void configureViewResolvers(ViewResolverRegistry registry)
-    {
+    public void configureViewResolvers(ViewResolverRegistry registry) {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine(templateEngine());
         registry.viewResolver(resolver);
     }
 
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder(){
-       return new BCryptPasswordEncoder();
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public JavaMailSender getJavaMailSender() {
+
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+
+        mailSender.setUsername("springticketapp");
+        mailSender.setPassword("dicdqzcsnyexsmvw");
+
+        Properties properties = mailSender.getJavaMailProperties();
+        properties.put("mail.transport.protocol", "smtp");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.debug", "true");
+
+        return mailSender;
     }
 
 }

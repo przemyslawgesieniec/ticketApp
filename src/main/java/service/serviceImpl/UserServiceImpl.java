@@ -48,6 +48,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserByEmail(String email) {
+        return userRepository.getUserByEmail(email);
+    }
+
+    @Override
     public User save(UserDto registrationRequestParams) {
 
         User user = new User();
@@ -57,6 +62,14 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(registrationRequestParams.getPassword()));
         user.setRoles(new HashSet<>(Collections.singletonList(new Role("ROLE_USER"))));
         return userRepository.save(user);
+    }
+
+    @Override
+    public void activateUser(String email) {
+
+        User user = getUserByEmail(email);
+        user.setEnabled(true);
+        userRepository.save(user);
     }
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){

@@ -1,5 +1,6 @@
 package main.java.config.security;
 
+import main.java.config.filter.EncodingFilter;
 import main.java.service.serviceImpl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 
 @Configuration
 @ComponentScan({"main.java.config","main.java.service"})
@@ -21,7 +23,9 @@ public class  WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
+        http.csrf().disable()
+                .addFilterBefore(new EncodingFilter(), ChannelProcessingFilter.class)
+                .authorizeRequests()
                 .antMatchers("/**/admin/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/**/user/**").access("hasRole('ROLE_USER')") //think over
                 .antMatchers("/register").permitAll()
