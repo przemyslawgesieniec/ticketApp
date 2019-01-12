@@ -23,6 +23,9 @@ public class  WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        http.addFilterBefore(new EncodingFilter(), ChannelProcessingFilter.class);
+
         http.csrf().disable()
                 .addFilterBefore(new EncodingFilter(), ChannelProcessingFilter.class)
                 .authorizeRequests()
@@ -55,9 +58,6 @@ public class  WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 auth.inMemoryAuthentication().withUser("admin").password(encoder.encode("admin123")).roles("ADMIN");
 
                 auth.userDetailsService(this.userDetailsService).passwordEncoder(this.bCryptPasswordEncoder);
-
             }
     }
-
-
 }

@@ -60,6 +60,7 @@ public class UserServiceImpl implements UserService {
         user.setFirstName(registrationRequestParams.getName());
         user.setLastName(registrationRequestParams.getLastName());
         user.setPassword(passwordEncoder.encode(registrationRequestParams.getPassword()));
+        //todo: get role from repository, do not create new one....
         user.setRoles(new HashSet<>(Collections.singletonList(new Role("ROLE_USER"))));
         return userRepository.save(user);
     }

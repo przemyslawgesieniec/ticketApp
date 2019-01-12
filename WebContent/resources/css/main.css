@@ -27,3 +27,30 @@
 .error-message{
     color: #ff6d6d !important;
 }
+.welcomePhoto{
+    /* Full height */
+    background: url("../photos/welcomePagePhoto.jpg") no-repeat center;
+    background-size: cover;
+    width: 50vw;
+    height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -100;
+
+}
+.font-Staatliches{
+    font-family: 'Staatliches', cursive;
+}
+.dashed-line{
+    width: 100%;
+    border-style: dashed;
+
+}
+
+.button-large-text{
+    font-size: 5rem !important;
+    height: 6rem !important;
+    line-height: 6rem !important;
+}

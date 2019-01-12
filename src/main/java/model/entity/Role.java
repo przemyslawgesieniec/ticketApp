@@ -22,6 +22,7 @@ public class Role {
     @Column(name = "user_role_id")
     private Long id;
 
+    //TODO unique
     public Role(String name) {
         this.name = name;
     }

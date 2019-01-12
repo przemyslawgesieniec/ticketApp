@@ -1,21 +1,34 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Index page</title>
-
-    <link rel="stylesheet" th:href="@{/css/main.css}"  href="../../resources/css/main.css" />
+    <meta charset="utf-8">
+    <title>Please sign in</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../../resources/css/main.css"/>
+    <link rel="stylesheet" th:href="@{/css/materialize.min.css}" href="../../resources/css/materialize.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/materializeCustomizer.css}"
+          href="../../resources/css/materializeCustomizer.css"/>
 
 
 </head>
 <body>
 
-
-<div class="color2">
-    registration failed
-
+<div class="backgroundPhoto"></div>
+<div class="container">
+    <div class="row">
+        <div class="col l6 offset-l3 ">
+            <div class="card horizontal">
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"><h4>Registration process completion failed!</h4></span>
+                        <span class="black-text"> Make sure, that you use appreciate verification link. </span>
+                    </div>
+                    <div class="card-action center-align">
+                        <a href="register" class="waves-effect waves-light btn-large">Back to Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p th:text="'Hello, ' + ${name} + '!'" />
-
 </body>
 </html>
