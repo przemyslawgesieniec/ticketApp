@@ -14,4 +14,9 @@ public class DefaultController {
         }
         return "redirect:/index/user/";
     }
+
+    @RequestMapping("/welcome")
+    public String welcomeResolver() {
+        return "welcome";
+    }
 }
