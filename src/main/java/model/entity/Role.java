@@ -9,12 +9,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Getter
 @Setter
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "name"))
+
 public class Role {
 
     @Id
@@ -22,20 +26,7 @@ public class Role {
     @Column(name = "user_role_id")
     private Long id;
 
-    //TODO unique
-    public Role(String name) {
-        this.name = name;
-    }
-
-    public Role() {
-    }
-
-    public Role(String name, Set<User> usersRoles) {
-        this.name = name;
-        this.usersRoles = usersRoles;
-    }
-
-    @Column(name = "user_role_name")
+    @Column(name = "name")
     private String name;
 
     @ManyToMany
