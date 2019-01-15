@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="container">
-<div th:fragment="event">
+<div th:fragment="eventFragment(name)">
     <div class="col s12 m12 l12">
         <div class="card horizontal">
             <div class="card-image">
@@ -22,8 +22,11 @@
             </div>
             <div class="card-stacked">
                 <div class="card-content">
-                    <p>I am a very simple card. I am good at containing small bits of information.</p>
+                    <p th:text="${name}"></p>
                 </div>
+                <!--<div class="card-content">-->
+                    <!--<p th:text="${eventDescription}"></p>-->
+                <!--</div>-->
                 <div class="card-action">
                     <a href="#">This is a link</a>
                 </div>

@@ -36,11 +36,28 @@
 
 <div class="container">
     <div class="row">
-        <div th:insert="~{fragments/indexContent :: event}"></div>
-        <div th:insert="~{fragments/indexContent :: event}"></div>
-        <div th:insert="~{fragments/indexContent :: event}"></div>
-        <div th:insert="~{fragments/indexContent :: event}"></div>
-        <div th:insert="~{fragments/indexContent :: event}"></div>
+
+        <table>
+            <!--/*@thymesVar id="eventList" type="java.util.List<java.dto.EventDto>"*/-->
+            <th:block th:each="event : ${eventList}">
+                <tr>
+                    <div th:insert="~{fragments/indexContent :: eventFragment(name=${event.name})}"></div>
+                    <!--<td th:text="${event.name}"></td>-->
+                    <!--<td th:text="${event.description}"></td>-->
+                </tr>
+            </th:block>
+        </table>
+
+        <!--<table>-->
+        <!--<tr th:each="event : ${eventList}" th:include="indexContent :: eventFragment"-->
+        <!--th:with="eventName=${event.name}, eventDescription=${event.description}"-->
+        <!--th:remove="tag"></tr>-->
+        <!--</table>-->
+
+
+        <!--/*@thymesVar id="description" type="java.util.List<java.dto.EventDto>"*/-->
+        <!--<div th:each="event : ${eventList}" th:include="indexContent :: event" th:with="eventName=${name}, eventDescription=${description}"></div>-->
+        <!--<div th:insert="~{fragments/indexContent :: event}"></div>-->
     </div>
 </div>
 
