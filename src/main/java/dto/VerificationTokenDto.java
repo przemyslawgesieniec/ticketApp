@@ -2,7 +2,7 @@ package main.java.dto;
 
 import lombok.Builder;
 import lombok.Data;
-import main.java.model.entity.User;
+import main.java.entity.User;
 
 import java.util.Date;
 

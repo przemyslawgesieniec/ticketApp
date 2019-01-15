@@ -1,8 +1,8 @@
 package main.java.service.serviceImpl;
 
 import main.java.dto.UserDto;
-import main.java.model.entity.User;
-import main.java.model.entity.VerificationToken;
+import main.java.entity.User;
+import main.java.entity.VerificationToken;
 import main.java.repository.VerificationTokenRepository;
 import main.java.service.UserVerificationService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
 package main.java.service;
 
 import main.java.dto.UserDto;
-import main.java.model.entity.User;
-import main.java.model.entity.VerificationToken;
+import main.java.entity.User;
+import main.java.entity.VerificationToken;
 
 import java.util.Optional;
 

@@ -1,9 +1,9 @@
 package main.java.service.serviceImpl;
 
 import main.java.dto.UserDto;
-import main.java.model.UserDetailsImpl;
-import main.java.model.entity.Role;
-import main.java.model.entity.User;
+import main.java.entity.Role;
+import main.java.entity.User;
+import main.java.repository.RoleRepository;
 import main.java.repository.UserRepository;
 import main.java.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -28,17 +27,19 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
 
     @Autowired
+    RoleRepository roleRepository;
+
+    @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         Optional<User> user = userRepository.findUserByEmail(email);
-        System.out.println("buba");
         if (!user.isPresent()){
             throw new UsernameNotFoundException("Invalid username or password.");
         }
-        return new UserDetailsImpl(user.get());
+        return new UserDetailsServiceImpl(user.get());
     }
 
 
@@ -56,12 +57,12 @@ public class UserServiceImpl implements UserService {
     public User save(UserDto registrationRequestParams) {
 
         User user = new User();
+        Role role = roleRepository.findRoleByName("ROLE_USER");
         user.setEmail(registrationRequestParams.getEmail());
         user.setFirstName(registrationRequestParams.getName());
         user.setLastName(registrationRequestParams.getLastName());
         user.setPassword(passwordEncoder.encode(registrationRequestParams.getPassword()));
-        //todo: get role from repository, do not create new one....
-        user.setRoles(new HashSet<>(Collections.singletonList(new Role("ROLE_USER"))));
+        user.setRoles(new HashSet<>(Collections.singletonList(role)));
         return userRepository.save(user);
     }
 

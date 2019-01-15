@@ -1,6 +1,5 @@
-package main.java.model.entity;
+package main.java.entity;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import main.java.dto.UserDto;
@@ -37,7 +36,7 @@ public class User {
     @Column(name = "user_password")
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_user_roles",
             joinColumns = {@JoinColumn(name = "user_id")},
