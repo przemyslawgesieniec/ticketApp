@@ -14,26 +14,51 @@
 </head>
 <body>
 <div class="container">
-<div th:fragment="eventFragment(name)">
-    <div class="col s12 m12 l12">
-        <div class="card horizontal">
-            <div class="card-image">
-                <img src="https://lorempixel.com/100/190/nature/6">
-            </div>
-            <div class="card-stacked">
-                <div class="card-content">
-                    <p th:text="${name}"></p>
+    <div th:fragment="eventFragment(event)">
+        <div class="col s12 m12 l12">
+            <div class="card horizontal">
+                <div class="card-image">
+                    <img src="https://lorempixel.com/100/190/nature/6">
                 </div>
-                <!--<div class="card-content">-->
-                    <!--<p th:text="${eventDescription}"></p>-->
-                <!--</div>-->
-                <div class="card-action">
-                    <a href="#">This is a link</a>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p th:text="${event.name}"></p>
+                    </div>
+                    <div class="card-content">
+                        <p th:text="${event.description}"></p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">This is a link</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <div th:fragment="eventFragmentAdmin(event)">
+        <div class="col s12 m12 l12">
+            <div class="card horizontal">
+                <div class="card-image">
+                    <img src="https://lorempixel.com/100/190/nature/6">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p th:text="${event.name}"></p>
+                    </div>
+                    <div class="card-content">
+                        <p th:text="${event.description}"></p>
+                    </div>
+                    <div class="card-content">
+                        <a class="waves-effect waves-light btn">button</a>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">This is a for admin</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>

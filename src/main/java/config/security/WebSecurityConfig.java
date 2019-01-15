@@ -5,6 +5,7 @@ import main.java.service.serviceImpl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.GlobalAuthenticationConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -30,6 +31,7 @@ public class  WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(new EncodingFilter(), ChannelProcessingFilter.class)
                 .authorizeRequests()
                 .antMatchers("/**/admin/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers(HttpMethod.POST,"/**/admin/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/**/user/**").access("hasRole('ROLE_USER')") //think over
                 .antMatchers("/register").permitAll()
                 .antMatchers("/login").permitAll()

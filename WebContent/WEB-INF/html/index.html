@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>Index page</title>
 
     <link rel="stylesheet" th:href="@{/css/main.css}" href="../../resources/css/main.css"/>
@@ -37,27 +37,29 @@
 <div class="container">
     <div class="row">
 
-        <table>
-            <!--/*@thymesVar id="eventList" type="java.util.List<java.dto.EventDto>"*/-->
-            <th:block th:each="event : ${eventList}">
-                <tr>
-                    <div th:insert="~{fragments/indexContent :: eventFragment(name=${event.name})}"></div>
-                    <!--<td th:text="${event.name}"></td>-->
-                    <!--<td th:text="${event.description}"></td>-->
-                </tr>
-            </th:block>
-        </table>
-
         <!--<table>-->
-        <!--<tr th:each="event : ${eventList}" th:include="indexContent :: eventFragment"-->
-        <!--th:with="eventName=${event.name}, eventDescription=${event.description}"-->
-        <!--th:remove="tag"></tr>-->
+            <!--&lt;!&ndash;/*@thymesVar id="eventList" type="java.util.List<java.dto.EventDto>"*/&ndash;&gt;-->
+            <!--<th:block th:each="event : ${eventList}">-->
+                <!--<tr>-->
+                    <!--<div th:insert="~{fragments/indexContent :: eventFragment(event=${event})}"></div>-->
+                <!--</tr>-->
+            <!--</th:block>-->
         <!--</table>-->
 
 
-        <!--/*@thymesVar id="description" type="java.util.List<java.dto.EventDto>"*/-->
-        <!--<div th:each="event : ${eventList}" th:include="indexContent :: event" th:with="eventName=${name}, eventDescription=${description}"></div>-->
-        <!--<div th:insert="~{fragments/indexContent :: event}"></div>-->
+        <!--/*@thymesVar id="eventList" type="java.util.List<java.dto.EventDto>"*/-->
+        <div th:if="${role == 'user'}">
+            <div th:each="event : ${eventList}">
+                <div th:insert="~{fragments/indexContent :: eventFragment(event=${event})}"></div>
+            </div>
+        </div>
+        <div th:if="${role == 'admin'}">
+            <div th:each="event : ${eventList}">
+                <div th:insert="~{fragments/indexContent :: eventFragmentAdmin(event=${event})}"></div>
+            </div>
+        </div>
+
+
     </div>
 </div>
 
