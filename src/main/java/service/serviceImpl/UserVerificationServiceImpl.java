@@ -3,7 +3,9 @@ package main.java.service.serviceImpl;
 import main.java.dto.UserDto;
 import main.java.entity.User;
 import main.java.entity.VerificationToken;
+import main.java.repository.UserRepository;
 import main.java.repository.VerificationTokenRepository;
+import main.java.service.UserService;
 import main.java.service.UserVerificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,13 +26,16 @@ public class UserVerificationServiceImpl implements UserVerificationService {
     @Autowired
     VerificationTokenRepository verificationTokenRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
 
     @Override
-    public VerificationToken generateAndPersistToken(User user) {
+    public VerificationToken generateAndPersistToken(UserDto user) {
 
         VerificationToken verificationToken = new VerificationToken();
         verificationToken.setExpiryDate(calculateExpiryDate());
-        verificationToken.setUser(user);
+        verificationToken.setUser(userRepository.getUserByEmail(user.getEmail()));
         verificationToken.setToken(generateToken());
         verificationTokenRepository.save(verificationToken);
         return verificationToken;

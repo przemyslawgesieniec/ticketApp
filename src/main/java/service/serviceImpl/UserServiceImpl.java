@@ -44,17 +44,17 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public Optional<User> findByEmail(String email) {
-        return userRepository.findUserByEmail(email);
+    public Optional<UserDto> findByEmail(String email) {
+        return userRepository.findUserByEmail(email).map(User::toDto);
     }
 
     @Override
-    public User getUserByEmail(String email) {
-        return userRepository.getUserByEmail(email);
+    public UserDto getUserByEmail(String email) {
+        return userRepository.getUserByEmail(email).toDto();
     }
 
     @Override
-    public User save(UserDto registrationRequestParams) {
+    public UserDto save(UserDto registrationRequestParams) {
 
         User user = new User();
         Role role = roleRepository.findRoleByName("ROLE_USER");
@@ -63,13 +63,13 @@ public class UserServiceImpl implements UserService {
         user.setLastName(registrationRequestParams.getLastName());
         user.setPassword(passwordEncoder.encode(registrationRequestParams.getPassword()));
         user.setRoles(new HashSet<>(Collections.singletonList(role)));
-        return userRepository.save(user);
+        return userRepository.save(user).toDto();
     }
 
     @Override
     public void activateUser(String email) {
 
-        User user = getUserByEmail(email);
+        User user = userRepository.getUserByEmail(email);
         user.setEnabled(true);
         userRepository.save(user);
     }

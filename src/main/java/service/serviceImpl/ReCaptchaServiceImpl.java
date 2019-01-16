@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Optional;
 
 @Service
-public class ReCaptchaService {
+public class ReCaptchaServiceImpl {
 
     @Autowired
     private CaptchaConfiguration captchaConfiguration;

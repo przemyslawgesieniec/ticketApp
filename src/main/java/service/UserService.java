@@ -8,8 +8,8 @@ import java.util.Optional;
 
 public interface UserService  extends UserDetailsService {
 
-    Optional<User> findByEmail(String email);
-    User getUserByEmail(String email);
-    User save(UserDto registrationRequestParams);
+    Optional<UserDto> findByEmail(String email);
+    UserDto getUserByEmail(String email);
+    UserDto save(UserDto registrationRequestParams);
     void activateUser(String email);
 }

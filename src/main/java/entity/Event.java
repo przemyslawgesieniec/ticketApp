@@ -7,7 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Event {
@@ -26,8 +29,11 @@ public class Event {
     @Column(name = "description")
     private String eventDescription;
 
+    @ManyToMany
+    private List<User> users = new ArrayList<>();
 
-    public EventDto toDto(){
+
+    public EventDto toDto() {
         return EventDto
                 .builder()
                 .eventDate(eventDate)

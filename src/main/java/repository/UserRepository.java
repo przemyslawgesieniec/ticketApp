@@ -1,5 +1,6 @@
 package main.java.repository;
 
+import main.java.dto.UserDto;
 import main.java.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -11,4 +12,5 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     Optional<User> findUserByEmail(String email);
     User getUserByEmail(String email);
+
 }

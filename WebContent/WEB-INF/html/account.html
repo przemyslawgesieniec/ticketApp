@@ -1,10 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Index page</title>
+
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../../resources/css/main.css"/>
+    <link rel="stylesheet" th:href="@{/css/materialize.css}" href="../../resources/css/materialize.css"/>
+    <link rel="stylesheet" th:href="@{/css/materializeCustomizer.css}"
+          href="../../resources/css/materializeCustomizer.css"/>
+    <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script th:src="@{/script/main.js}" src="../../resources/script/main.js"></script>
+    <script th:src="@{/script/materialize.js}" src="../../resources/script/materialize.js"></script>
 </head>
 <body>
+
+<!--NAV BAR-->
+<nav>
+    <div th:replace="~{fragments/nav :: navUser}">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Logo</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="">Account</a></li>
+                <li><a href="login.html">Log out</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--NAV BAR-->
+
+<div class="container">
+    <div class="row">
+
+    </div>
+</div>
+
+
+<!--FOOTER-->
+<div th:replace="~{fragments/footer :: footer}">
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Footer Content</h5>
+                    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer
+                        content.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link seds</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2014 Copyright Text
+                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+        </div>
+    </footer>
+</div>
+<!--FOOTER-->
 
 </body>
 </html>

@@ -4,8 +4,20 @@ import lombok.Getter;
 import lombok.Setter;
 import main.java.dto.UserDto;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Entity
@@ -44,6 +56,14 @@ public class User {
     )
     private Set<Role> roles = new HashSet<>();
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_event",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "event_id")}
+    )
+    private List<Event> userEvents;
+
     @Column(name = "enabled")
     private boolean enabled;
 
@@ -52,6 +72,7 @@ public class User {
                 .email(email)
                 .lastName(lastName)
                 .password(password)
+                .userEvents(userEvents)
                 .build();
     }
 }

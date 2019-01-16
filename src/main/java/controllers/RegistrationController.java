@@ -6,7 +6,7 @@ import main.java.entity.VerificationToken;
 import main.java.service.UserService;
 import main.java.service.UserVerificationService;
 import main.java.service.serviceImpl.EmailServiceImpl;
-import main.java.service.serviceImpl.ReCaptchaService;
+import main.java.service.serviceImpl.ReCaptchaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -30,7 +30,7 @@ public class RegistrationController {
     private UserVerificationService userVerificationService;
 
     @Autowired
-    private ReCaptchaService captchaService;
+    private ReCaptchaServiceImpl captchaService;
 
     @Autowired
     private EmailServiceImpl emailService;
@@ -48,7 +48,7 @@ public class RegistrationController {
 
         //TODO: create form validation service
 
-        Optional<User> registeredUser = userService.findByEmail(user.getEmail());
+        Optional<UserDto> registeredUser = userService.findByEmail(user.getEmail());
 
         if (registeredUser.isPresent()) {
             bindingResult.rejectValue("email", null, "User with this email already exists");

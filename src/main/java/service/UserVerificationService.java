@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface UserVerificationService {
 
-    VerificationToken generateAndPersistToken(User email);
+    VerificationToken generateAndPersistToken(UserDto user);
 
     Optional<UserDto> validateToken(String token);
 

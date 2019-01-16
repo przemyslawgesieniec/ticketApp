@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.parallax');
-    var instances = M.Parallax.init(elems, 100);
+    var paralaxInstance = M.Parallax.init(elems, 100);
+
+});
+$(document).ready(function(){
+    $('.tabs').tabs();
 });
