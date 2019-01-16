@@ -17,9 +17,9 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "name"))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "name"), name = "role")
 
-public class Role {
+public class RoleEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,5 +30,5 @@ public class Role {
     private String name;
 
     @ManyToMany
-    private Set<User> usersRoles = new HashSet<>();
+    private Set<UserEntity> usersRoles = new HashSet<>();
 }

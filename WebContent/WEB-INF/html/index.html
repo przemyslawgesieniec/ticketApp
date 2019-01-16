@@ -37,16 +37,6 @@
 <div class="container">
     <div class="row">
 
-        <!--<table>-->
-            <!--&lt;!&ndash;/*@thymesVar id="eventList" type="java.util.List<java.dto.EventDto>"*/&ndash;&gt;-->
-            <!--<th:block th:each="event : ${eventList}">-->
-                <!--<tr>-->
-                    <!--<div th:insert="~{fragments/indexContent :: eventFragment(event=${event})}"></div>-->
-                <!--</tr>-->
-            <!--</th:block>-->
-        <!--</table>-->
-
-
         <!--/*@thymesVar id="eventList" type="java.util.List<java.dto.EventDto>"*/-->
         <div th:if="${role == 'user'}">
             <div th:each="event : ${eventList}">

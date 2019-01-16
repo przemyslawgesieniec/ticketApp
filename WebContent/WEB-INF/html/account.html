@@ -8,7 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/materialize.css}" href="../../resources/css/materialize.css"/>
     <link rel="stylesheet" th:href="@{/css/materializeCustomizer.css}"
           href="../../resources/css/materializeCustomizer.css"/>
-    <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script th:src="@{/script/main.js}" src="../../resources/script/main.js"></script>
     <script th:src="@{/script/materialize.js}" src="../../resources/script/materialize.js"></script>
 </head>
@@ -30,7 +30,12 @@
 
 <div class="container">
     <div class="row">
-
+        <div th:if="${role == 'user'}">
+            <div th:insert="~{fragments/accountTabs :: tabsUser(user=${user})}"></div>
+        </div>
+        <div th:if="${role == 'admin'}">
+            <div th:insert="~{fragments/accountTabs :: tabsAdmin(user=${user})}"></div>
+        </div>
     </div>
 </div>
 

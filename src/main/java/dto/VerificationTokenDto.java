@@ -2,7 +2,7 @@ package main.java.dto;
 
 import lombok.Builder;
 import lombok.Data;
-import main.java.entity.User;
+import main.java.entity.UserEntity;
 
 import java.util.Date;
 
@@ -11,6 +11,6 @@ import java.util.Date;
 public class VerificationTokenDto {
 
     private String token;
-    private User user;
+    private UserEntity user;
     private Date expiryDate;
 }

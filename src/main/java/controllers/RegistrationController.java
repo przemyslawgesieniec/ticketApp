@@ -1,8 +1,7 @@
 package main.java.controllers;
 
 import main.java.dto.UserDto;
-import main.java.entity.User;
-import main.java.entity.VerificationToken;
+import main.java.entity.VerificationTokenEntity;
 import main.java.service.UserService;
 import main.java.service.UserVerificationService;
 import main.java.service.serviceImpl.EmailServiceImpl;
@@ -51,7 +50,7 @@ public class RegistrationController {
         Optional<UserDto> registeredUser = userService.findByEmail(user.getEmail());
 
         if (registeredUser.isPresent()) {
-            bindingResult.rejectValue("email", null, "User with this email already exists");
+            bindingResult.rejectValue("email", null, "UserEntity with this email already exists");
         }
 
         boolean isCaptchaValid = captchaService.verifyResponse(request.getParameter("g-recaptcha-response"));
@@ -64,7 +63,7 @@ public class RegistrationController {
             return new ModelAndView("register","user", user);
         }
 
-        VerificationToken token = userVerificationService.generateAndPersistToken(userService.save(user));
+        VerificationTokenEntity token = userVerificationService.generateAndPersistToken(userService.save(user));
         emailService.sendRegistrationConfirmationMessage(user.getEmail(),token.getToken());
 
         return new ModelAndView("login","user", user);

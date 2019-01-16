@@ -13,20 +13,21 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
-@Entity
+@Entity(name = "User")
 @Getter
 @Setter
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
-public class User {
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"), name = "user")
+public class UserEntity {
 
-    public User() {
+    public UserEntity() {
         super();
         this.enabled = false;
     }
@@ -54,15 +55,16 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "user_role_id")}
     )
-    private Set<Role> roles = new HashSet<>();
+    private Set<RoleEntity> roles = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_event",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "event_id")}
-    )
-    private List<Event> userEvents;
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(
+//            name = "user_event",
+//            joinColumns = {@JoinColumn(name = "user_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "event_id")}
+//    )
+    @OneToMany(mappedBy = "user")
+    private List<UserEventEntity> userEvents = new ArrayList<>();
 
     @Column(name = "enabled")
     private boolean enabled;

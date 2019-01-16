@@ -10,12 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
 @Getter
 @Setter
-public class VerificationToken {
+@Table(name = "verification_token")
+public class VerificationTokenEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,9 +25,9 @@ public class VerificationToken {
 
     private String token;
 
-    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+    @OneToOne(targetEntity = UserEntity.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")
-    private User user;
+    private UserEntity user;
 
     private Date expiryDate;
 

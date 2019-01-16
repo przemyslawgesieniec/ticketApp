@@ -1,11 +1,9 @@
 package main.java.service.serviceImpl;
 
 import main.java.dto.UserDto;
-import main.java.entity.User;
-import main.java.entity.VerificationToken;
+import main.java.entity.VerificationTokenEntity;
 import main.java.repository.UserRepository;
 import main.java.repository.VerificationTokenRepository;
-import main.java.service.UserService;
 import main.java.service.UserVerificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,9 +29,9 @@ public class UserVerificationServiceImpl implements UserVerificationService {
 
 
     @Override
-    public VerificationToken generateAndPersistToken(UserDto user) {
+    public VerificationTokenEntity generateAndPersistToken(UserDto user) {
 
-        VerificationToken verificationToken = new VerificationToken();
+        VerificationTokenEntity verificationToken = new VerificationTokenEntity();
         verificationToken.setExpiryDate(calculateExpiryDate());
         verificationToken.setUser(userRepository.getUserByEmail(user.getEmail()));
         verificationToken.setToken(generateToken());
@@ -45,7 +43,7 @@ public class UserVerificationServiceImpl implements UserVerificationService {
     public Optional<UserDto> validateToken(String token) {
 
         //TODO: test this method
-        VerificationToken verificationTokenFromRepository = getVerificationToken(token);
+        VerificationTokenEntity verificationTokenFromRepository = getVerificationToken(token);
         if (verificationTokenFromRepository != null) {
             if (!isTokenExpired(verificationTokenFromRepository.getExpiryDate()))
                 return Optional.of(verificationTokenFromRepository.getUser().toDto());
@@ -62,7 +60,7 @@ public class UserVerificationServiceImpl implements UserVerificationService {
     }
 
 
-    private VerificationToken getVerificationToken(String verificationToken){
+    private VerificationTokenEntity getVerificationToken(String verificationToken){
         return verificationTokenRepository.getByToken(verificationToken);
     }
 

@@ -16,18 +16,12 @@
 
 <div class="container">
     <div class="row">
-        <div th:fragment="tabsUser">
+        <div th:fragment="tabsUser(user)">
             <div class="col s12 m12 l12">
                 <ul class="tabs">
-                    <li class="tab col s4"><a class="active" href="#test1">
-                        Test 1
-                    </a></li>
-                    <li class="tab col s4"><a href="#test2">
-                        Test 2
-                    </a></li>
-                    <li class="tab col s4"><a href="#test3">
-                        Test 3
-                    </a></li>
+                    <li class="tab col s4"><a class="active" href="#test1">Account settings</a></li>
+                    <li class="tab col s4"><a href="#test2">Requested tickets</a></li>
+                    <li class="tab col s4"><a href="#test3">Bought tickets</a></li>
                 </ul>
             </div>
             <div id="test1" class="col s12">Test 1</div>
@@ -35,27 +29,27 @@
             <div id="test3" class="col s12">Test 3</div>
         </div>
 
-        <div th:fragment="tabsAdmin">
+        <div th:fragment="tabsAdmin(user)">
             <div class="col s12 m12 l12">
                 <ul class="tabs">
-                    <li class="tab col s3"><a class="active" href="#test11">
-                        Test 1
-                    </a></li>
-                    <li class="tab col s3"><a href="#test22">
-                        Test 2
-                    </a></li>
-                    <li class="tab col s3"><a href="#test33">
-                        Test 3
-                    </a></li>
-                    <li class="tab col s3"><a href="#test44">
-                        Test 3
-                    </a></li>
+                    <li class="tab col s3"><a class="active" href="#test11">Account settings</a></li>
+                    <li class="tab col s3"><a href="#test22">Bought tickets</a></li>
+                    <li class="tab col s3"><a href="#test33">Users Tickets requests</a></li>
+                    <li class="tab col s3"><a href="#test44">Manage users</a></li>
                 </ul>
             </div>
-            <div id="test11" class="col s12">Test 1</div>
-            <div id="test22" class="col s12">Test 2</div>
-            <div id="test33" class="col s12">Test 3</div>
-            <div id="test44" class="col s12">Test 3</div>
+            <div id="test11" class="col s12">
+                Test 1
+            </div>
+            <div id="test22" class="col s12">
+                Test 2
+            </div>
+            <div id="test33" class="col s12">
+                Test 3
+            </div>
+            <div id="test44" class="col s12">
+                Test 4
+            </div>
         </div>
     </div>
 </div>

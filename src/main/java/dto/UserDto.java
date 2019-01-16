@@ -2,7 +2,9 @@ package main.java.dto;
 
 import lombok.Builder;
 import lombok.Data;
-import main.java.entity.Event;
+import main.java.entity.EventEntity;
+import main.java.entity.UserEventEntity;
+import main.java.entity.UserEventIdEntity;
 import main.java.validator.constraintAnnotations.ValidEmail;
 
 import javax.validation.constraints.NotNull;
@@ -30,7 +32,7 @@ public class UserDto {
 
     private String reCaptcha;
 
-    private List<Event> userEvents;
+    private List<UserEventEntity> userEvents;
 
     @Override
     public boolean equals(Object o) {

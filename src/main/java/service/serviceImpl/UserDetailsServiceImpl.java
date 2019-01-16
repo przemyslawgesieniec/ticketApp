@@ -1,6 +1,6 @@
 package main.java.service.serviceImpl;
 
-import main.java.entity.User;
+import main.java.entity.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 
 public class UserDetailsServiceImpl implements UserDetails {
 
-    private User user;
+    private UserEntity user;
 
-    public UserDetailsServiceImpl(User user) {
+    public UserDetailsServiceImpl(UserEntity user) {
         this.user = user;
     }
 
