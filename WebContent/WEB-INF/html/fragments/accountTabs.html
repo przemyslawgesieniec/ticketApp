@@ -16,7 +16,7 @@
 
 <div class="container">
     <div class="row">
-        <div th:fragment="tabsUser(user,requestedTickets,boughtTickets)">
+        <div th:fragment="tabsUser(user,requestedTickets,boughtTickets,rejectedTickets)">
             <div class="col s12 m12 l12">
                 <ul class="tabs">
                     <li class="tab col s4"><a class="active" href="#test1">Account settings</a></li>
@@ -30,6 +30,9 @@
             <div id="test2" class="col s12">
                 <div th:each="event : ${requestedTickets}">
                     <div th:insert="~{fragments/indexContent :: eventFragment(event=${event})}"></div>
+                </div>
+                <div th:each="event : ${rejectedTickets}">
+                    <div th:insert="~{fragments/indexContent :: eventFragmentRejected(event=${event})}"></div>
                 </div>
             </div>
             <div id="test3" class="col s12">

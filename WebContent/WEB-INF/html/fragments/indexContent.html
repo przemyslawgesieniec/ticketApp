@@ -58,6 +58,28 @@
             </div>
         </div>
     </div>
+
+    <div th:fragment="eventFragmentRejected(event)">
+        <div class="col s12 m12 l12">
+            <div class="card horizontal">
+                <div class="card-image">
+                    <img src="https://lorempixel.com/100/190/nature/6">
+                </div>
+                <div class="card-stacked">
+                    REJECTED
+                    <div class="card-content">
+                        <p th:text="${event.name}"></p>
+                    </div>
+                    <div class="card-content">
+                        <p th:text="${event.description}"></p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">Retry</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>

@@ -5,13 +5,29 @@
 </head>
 
 <div th:fragment="navUser">
-    <div class="nav-wrapper">
-        <a href="/index/user" class="brand-logo">Logo</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="/account/user">Account</a></li>
-            <li><a href="/logout">Log out</a></li>
-        </ul>
-    </div>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/index/user" class="brand-logo">Logo</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/account/user">Account</a></li>
+                <li><a href="/logout">Log out</a></li>
+            </ul>
+        </div>
+    </nav>
 </div>
+
+<div th:fragment="navAdmin">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/index/admin" class="brand-logo">Logo</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/account/admin">Account</a></li>
+                <li><a data-target="addEventModal" class="modal-trigger">Add event</a></li>
+                <li><a href="/logout">Log out</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
 
 </html>

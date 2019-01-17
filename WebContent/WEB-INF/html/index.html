@@ -8,23 +8,28 @@
     <link rel="stylesheet" th:href="@{/css/materialize.css}" href="../../resources/css/materialize.css"/>
     <link rel="stylesheet" th:href="@{/css/materializeCustomizer.css}"
           href="../../resources/css/materializeCustomizer.css"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script th:src="@{/script/main.js}" src="../../resources/script/main.js"></script>
     <script th:src="@{/script/materialize.js}" src="../../resources/script/materialize.js"></script>
 </head>
 <body>
 
 <!--NAV BAR-->
-<nav>
-    <div th:replace="~{fragments/nav :: navUser}">
+<div th:if="${role == 'user'}">
+    <div th:insert="~{fragments/nav :: navUser}"></div>
+</div>
+<div th:if="${role == 'admin'}">
+    <div th:replace="~{fragments/nav :: navAdmin}">
         <div class="nav-wrapper">
             <a href="#" class="brand-logo">Logo</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="">Account</a></li>
+                <li><a data-target="addEventModal" class="modal-trigger">Add event</a></li>
                 <li><a href="login.html">Log out</a></li>
             </ul>
         </div>
     </div>
-</nav>
+</div>
 <!--NAV BAR-->
 
 <!--PARALLAX-->
@@ -51,6 +56,40 @@
 
 
     </div>
+</div>
+
+<div th:if="${role == 'admin'}">
+
+    <div id="addEventModal" class="modal">
+        <div class="modal-content">
+            <h4>Add new Event</h4>
+            <div class="row">
+                <form class="col s12">
+                        <div class="input-field col s5">
+                            <input placeholder="Event name" id="event_name" name="name" type="text" class="validate">
+                            <label for="event_name">Event Name</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input type="text" class="datepicker" name="date" id="event_date">
+                            <label for="event_date">Event Date</label>
+                        </div>
+                        <div class="input-field col s3">
+                            <input placeholder="Ticket cost" type="text" name="cost" id="ticket_cost">
+                            <label for="ticket_cost">Ticket Cost</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <textarea id="event_description" name="description" class="materialize-textarea"></textarea>
+                            <label for="event_description">Event Description</label>
+                        </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button onclick="sendNewEventForm()" class="modal-close waves-effect waves-green btn-flat">Submit</button>
+        </div>
+    </div>
+
+</div>
 </div>
 
 <div th:replace="~{fragments/footer :: footer}">

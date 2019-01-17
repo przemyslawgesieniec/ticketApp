@@ -30,11 +30,13 @@ public class AccountController {
         UserDto loggedInUser = userService.getUserByEmail(request.getUserPrincipal().getName());
         List<EventDto> requestedTickets = userService.getAllRequestedTickets(loggedInUser);
         List<EventDto> boughtTickets = userService.getAllBoughtTickets(loggedInUser);
+        List<EventDto> rejectedTickets = userService.getAllRejectedTickets(loggedInUser);
 
         modelAndView.setViewName("account");
         modelAndView.addObject("user", loggedInUser);
         modelAndView.addObject("requestedTickets", requestedTickets);
         modelAndView.addObject("boughtTickets", boughtTickets);
+        modelAndView.addObject("rejectedTickets", rejectedTickets);
         modelAndView.addObject("role", "user");
 
         return modelAndView;

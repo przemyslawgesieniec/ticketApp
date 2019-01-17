@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface UserEventRepository extends JpaRepository<UserEventEntity, Long> {
 
-    List<UserEventEntity> getAllByUserIdAndState(Long id, boolean state);
+    List<UserEventEntity> getAllByUserIdAndState(Long id, int state);
 
 }

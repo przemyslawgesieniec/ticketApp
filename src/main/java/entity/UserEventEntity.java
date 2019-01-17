@@ -31,5 +31,5 @@ public class UserEventEntity  implements Serializable {
     private EventEntity event;
 
     @Column(name = "state")
-    private Boolean state = false;
+    private Integer state = 0;
 }

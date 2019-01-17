@@ -89,15 +89,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<EventDto> getAllRequestedTickets(UserDto user) {
-        List<UserEventEntity> eventEntityList = userEventRepository.getAllByUserIdAndState(user.getId(),false);
-        List<Long> eventIdList = eventEntityList.stream().map(e->e.getEvent().getId()).collect(Collectors.toList());
-        List<EventEntity> requestedEventList = eventRepository.findByIdIn(eventIdList);
-        return requestedEventList.stream().map(EventEntity::toDto).collect(Collectors.toList());
+        return getAllTicketsByState(user,0);
     }
 
     @Override
     public List<EventDto> getAllBoughtTickets(UserDto user) {
-        List<UserEventEntity> eventEntityList = userEventRepository.getAllByUserIdAndState(user.getId(),true);
+        return getAllTicketsByState(user,1);
+    }
+
+    @Override
+    public List<EventDto> getAllRejectedTickets(UserDto user) {
+        return getAllTicketsByState(user,2);
+    }
+
+    private List<EventDto> getAllTicketsByState(UserDto user, int state){
+        List<UserEventEntity> eventEntityList = userEventRepository.getAllByUserIdAndState(user.getId(),state);
         List<Long> eventIdList = eventEntityList.stream().map(e->e.getEvent().getId()).collect(Collectors.toList());
         List<EventEntity> requestedEventList = eventRepository.findByIdIn(eventIdList);
         return requestedEventList.stream().map(EventEntity::toDto).collect(Collectors.toList());
