@@ -35,7 +35,9 @@ public class EventEntity {
     @Column(name = "description")
     private String eventDescription;
 
-    //    @ManyToMany
+    @Column(name= "cost")
+    private Double eventCost;
+
     @OneToMany(mappedBy = "event")
     private List<UserEventEntity> users = new ArrayList<>();
 
@@ -47,6 +49,7 @@ public class EventEntity {
                 .description(eventDescription)
                 .name(eventName)
                 .users(users)
+                .cost(eventCost)
                 .build();
     }
 }
