@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
@@ -18,21 +19,17 @@ import java.io.Serializable;
 @Table(name = "user_event")
 public class UserEventEntity  implements Serializable {
 
-    @EmbeddedId
-    private UserEventIdEntity id;
-
+    @Id
+    private Long id;
 
     @ManyToOne
-    @MapsId("userId")
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
-
     @ManyToOne
     @MapsId("eventId")
-    @JoinColumn(name = "event_id")
     private EventEntity event;
 
     @Column(name = "state")
-    private Boolean state;
+    private Boolean state = false;
 }

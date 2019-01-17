@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.Data;
 import main.java.entity.EventEntity;
 import main.java.entity.UserEventEntity;
-import main.java.entity.UserEventIdEntity;
 import main.java.validator.constraintAnnotations.ValidEmail;
 
 import javax.validation.constraints.NotNull;
@@ -14,6 +13,9 @@ import java.util.List;
 @Builder
 @Data
 public class UserDto {
+
+    @NotNull
+    private Long id;
 
     @NotNull
     @Size(min = 2, max = 30)

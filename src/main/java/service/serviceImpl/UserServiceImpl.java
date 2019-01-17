@@ -1,9 +1,14 @@
 package main.java.service.serviceImpl;
 
+import main.java.dto.EventDto;
 import main.java.dto.UserDto;
+import main.java.entity.EventEntity;
 import main.java.entity.RoleEntity;
 import main.java.entity.UserEntity;
+import main.java.entity.UserEventEntity;
+import main.java.repository.EventRepository;
 import main.java.repository.RoleRepository;
+import main.java.repository.UserEventRepository;
 import main.java.repository.UserRepository;
 import main.java.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +19,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -24,13 +31,19 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    RoleRepository roleRepository;
+    private RoleRepository roleRepository;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserEventRepository userEventRepository;
+
+    @Autowired
+    private EventRepository eventRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -74,9 +87,20 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<RoleEntity> roles){
-        return roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
-                .collect(Collectors.toList());
+    @Override
+    public List<EventDto> getAllRequestedTickets(UserDto user) {
+        List<UserEventEntity> eventEntityList = userEventRepository.getAllByUserIdAndState(user.getId(),false);
+        List<Long> eventIdList = eventEntityList.stream().map(e->e.getEvent().getId()).collect(Collectors.toList());
+        List<EventEntity> requestedEventList = eventRepository.findByIdIn(eventIdList);
+        return requestedEventList.stream().map(EventEntity::toDto).collect(Collectors.toList());
     }
+
+    @Override
+    public List<EventDto> getAllBoughtTickets(UserDto user) {
+        List<UserEventEntity> eventEntityList = userEventRepository.getAllByUserIdAndState(user.getId(),true);
+        List<Long> eventIdList = eventEntityList.stream().map(e->e.getEvent().getId()).collect(Collectors.toList());
+        List<EventEntity> requestedEventList = eventRepository.findByIdIn(eventIdList);
+        return requestedEventList.stream().map(EventEntity::toDto).collect(Collectors.toList());
+    }
+
 }

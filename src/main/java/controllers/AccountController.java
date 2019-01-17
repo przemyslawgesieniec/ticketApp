@@ -1,5 +1,6 @@
 package main.java.controllers;
 
+import main.java.dto.EventDto;
 import main.java.dto.UserDto;
 import main.java.entity.EventEntity;
 import main.java.service.serviceImpl.EventServiceImpl;
@@ -27,11 +28,13 @@ public class AccountController {
     public ModelAndView getUserAccountInformation(ModelAndView modelAndView, HttpServletRequest request) {
 
         UserDto loggedInUser = userService.getUserByEmail(request.getUserPrincipal().getName());
-//        List<EventEntity> requestedTickets = eventService.
+        List<EventDto> requestedTickets = userService.getAllRequestedTickets(loggedInUser);
+        List<EventDto> boughtTickets = userService.getAllBoughtTickets(loggedInUser);
 
-//        UserAccoutTabInput userAccoutTabInput = new UserAccoutTabInput(loggedInUser,)
         modelAndView.setViewName("account");
         modelAndView.addObject("user", loggedInUser);
+        modelAndView.addObject("requestedTickets", requestedTickets);
+        modelAndView.addObject("boughtTickets", boughtTickets);
         modelAndView.addObject("role", "user");
 
         return modelAndView;

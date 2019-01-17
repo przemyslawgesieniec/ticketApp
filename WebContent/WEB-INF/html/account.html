@@ -31,7 +31,7 @@
 <div class="container">
     <div class="row">
         <div th:if="${role == 'user'}">
-            <div th:insert="~{fragments/accountTabs :: tabsUser(user=${user})}"></div>
+            <div th:insert="~{fragments/accountTabs :: tabsUser(user=${user},requestedTickets=${requestedTickets},boughtTickets=${boughtTickets})}"></div>
         </div>
         <div th:if="${role == 'admin'}">
             <div th:insert="~{fragments/accountTabs :: tabsAdmin(user=${user})}"></div>

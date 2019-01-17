@@ -23,12 +23,7 @@ public class EventServiceImpl {
                 .collect(Collectors.toList());
     }
 
-//    public List<EventDto> getUserRequestedTickets() {
-//
-//
-//    }
-//
-//    public List<EventDto> getUserBoughtTickets() {
-//
-//    }
+
+
+
 }
