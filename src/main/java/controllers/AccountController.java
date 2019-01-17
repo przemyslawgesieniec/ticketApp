@@ -2,7 +2,7 @@ package main.java.controllers;
 
 import main.java.dto.EventDto;
 import main.java.dto.UserDto;
-import main.java.entity.EventEntity;
+import main.java.service.UserService;
 import main.java.service.serviceImpl.EventServiceImpl;
 import main.java.service.serviceImpl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class AccountController {
     EventServiceImpl eventService;
 
     @Autowired
-    UserServiceImpl userService;
+    UserService userService;
 
     @RequestMapping(value = {"/user"}, method = RequestMethod.GET)
     public ModelAndView getUserAccountInformation(ModelAndView modelAndView, HttpServletRequest request) {

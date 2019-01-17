@@ -29,6 +29,7 @@
 <!--NAV BAR-->
 
 <div class="container">
+    <div class="spacer"></div>
     <div class="row">
         <div th:if="${role == 'user'}">
             <div th:insert="~{fragments/accountTabs :: tabsUser(user=${user},

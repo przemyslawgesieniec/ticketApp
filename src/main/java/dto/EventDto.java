@@ -11,6 +11,7 @@ import java.util.List;
 @Builder
 public class EventDto {
 
+    private Long id;
     private String name;
     private Date eventDate;
     private String description;

@@ -45,6 +45,7 @@ public class EventEntity {
     public EventDto toDto() {
         return EventDto
                 .builder()
+                .id(id)
                 .eventDate(eventDate)
                 .description(eventDescription)
                 .name(eventName)

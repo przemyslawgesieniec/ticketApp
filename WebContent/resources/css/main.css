@@ -20,6 +20,9 @@
 .button-wrapper{
     margin-top: 3rem;
 }
+.button-spacer{
+    margin-top: 1.5rem;
+}
 .recaptcha-wrapper{
     margin-top: 2rem;
 
@@ -53,4 +56,8 @@
     font-size: 5rem !important;
     height: 6rem !important;
     line-height: 6rem !important;
+}
+
+.spacer{
+    height: 5rem;
 }

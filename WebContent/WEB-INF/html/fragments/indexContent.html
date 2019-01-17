@@ -28,7 +28,8 @@
                         <p th:text="${event.description}"></p>
                     </div>
                     <div class="card-action">
-                        <a href="#">This is a link</a>
+                        <a th:href="@{requestTicket(id=${event.id})}">REQUEST TICKET</a>
+                        <!--<a href="#">Request Ticket</a>-->
                     </div>
                 </div>
             </div>

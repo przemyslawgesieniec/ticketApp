@@ -78,4 +78,8 @@ public class UserEntity {
                 .userEvents(userEvents)
                 .build();
     }
+
+    public void addEvent(UserEventEntity event){
+        userEvents.add(event);
+    }
 }

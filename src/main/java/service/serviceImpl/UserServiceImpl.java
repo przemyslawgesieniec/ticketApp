@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -101,6 +102,20 @@ public class UserServiceImpl implements UserService {
     public List<EventDto> getAllRejectedTickets(UserDto user) {
         return getAllTicketsByState(user,2);
     }
+
+//    @Override
+//    @Transactional
+//    public void requestEvent(Long eventId, String email) {
+//        UserEntity userEntity = userRepository.getUserByEmail(email);
+//        EventEntity eventEntity = eventRepository.getOne(eventId);
+//        UserEventEntity userEventEntity = new UserEventEntity();
+//        userEventEntity.setState(0);
+//        userEventEntity.setUser(userEntity);
+//        userEventEntity.setEvent(eventEntity);
+//        userEventRepository.save(userEventEntity);
+//        userEntity.addEvent(userEventEntity);
+//        userRepository.save(userEntity);
+//    }
 
     private List<EventDto> getAllTicketsByState(UserDto user, int state){
         List<UserEventEntity> eventEntityList = userEventRepository.getAllByUserIdAndState(user.getId(),state);

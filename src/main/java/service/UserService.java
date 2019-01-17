@@ -16,4 +16,5 @@ public interface UserService  extends UserDetailsService {
     List<EventDto> getAllRequestedTickets(UserDto user);
     List<EventDto> getAllBoughtTickets(UserDto user);
     List<EventDto> getAllRejectedTickets(UserDto user);
+//    void requestEvent(Long eventId, String email);
 }
