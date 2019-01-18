@@ -46,7 +46,7 @@ public class IndexController {
     public ModelAndView requestTicket(ModelAndView modelAndView,
                                       @RequestParam(value = "id") Long eventId,
                                       Principal principal) {
-        final boolean isRequested = userService.requestEvent(eventId, principal.getName());
+        final boolean isRequested = eventService.requestEvent(eventId, principal.getName());
         modelAndView.addObject("role", "user");
         modelAndView.addObject("isRequested", isRequested ? "Ticket is requested" : "You already have this ticket");
         return getModelAndView(modelAndView);
@@ -56,7 +56,7 @@ public class IndexController {
     public ModelAndView buyTicket(ModelAndView modelAndView,
                                   @RequestParam(value = "id") Long eventId,
                                   Principal principal) {
-        userService.buyTicket(eventId, principal.getName());
+        eventService.buyTicket(eventId, principal.getName());
         modelAndView.addObject("role", "admin");
         modelAndView.addObject("isBought", "You have bought the ticket");
         return getModelAndView(modelAndView);
