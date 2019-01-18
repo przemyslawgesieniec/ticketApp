@@ -9,6 +9,8 @@ import java.util.Optional;
 public interface UserEventRepository extends JpaRepository<UserEventEntity, Long> {
 
     List<UserEventEntity> getAllByUserIdAndState(Long id, int state);
+    List<UserEventEntity> findAllByState(Integer state);
     Optional<UserEventEntity> findOneByUserIdAndEventId(Long userId, Long eventId);
+
 
 }

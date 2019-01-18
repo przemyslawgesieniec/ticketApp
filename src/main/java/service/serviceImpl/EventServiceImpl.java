@@ -1,6 +1,7 @@
 package main.java.service.serviceImpl;
 
 import main.java.dto.EventDto;
+import main.java.dto.UserEventDto;
 import main.java.entity.EventEntity;
 import main.java.entity.UserEntity;
 import main.java.entity.UserEventEntity;
@@ -28,6 +29,7 @@ public class EventServiceImpl {
 
     @Autowired
     private UserEventRepository userEventRepository;
+
 
     public List<EventDto> getAllEvents() {
 
@@ -76,6 +78,12 @@ public class EventServiceImpl {
         userEventEntity.setState(state);
         userEventRepository.save(userEventEntity);
     }
+
+     public List<EventDto> getAllTicketsRequestedByUsers(){
+
+         List<Long> eventIdList = userEventRepository.findAllByState(0).stream().map(UserEventEntity::getEventId).collect(Collectors.toList());
+         return eventRepository.findByIdIn(eventIdList).stream().map(EventEntity::toDto).collect(Collectors.toList());
+     }
 
 
 }

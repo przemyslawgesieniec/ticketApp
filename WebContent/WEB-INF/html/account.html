@@ -47,7 +47,8 @@
         <div th:if="${role == 'admin'}">
             <div th:insert="~{fragments/accountTabs :: tabsAdmin(user=${user},
                                 boughtTickets=${boughtTickets},
-                                users=${users})}">
+                                users=${users},
+                                ticketsRequestedByUsers=${ticketsRequestedByUsers})}">
 
             </div>
         </div>

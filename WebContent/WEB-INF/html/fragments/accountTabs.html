@@ -76,7 +76,7 @@
             </div>
         </div>
 
-        <div th:fragment="tabsAdmin(user,boughtTickets,users)">
+        <div th:fragment="tabsAdmin(user,boughtTickets,users,ticketsRequestedByUsers)">
             <div class="col s12 m12 l12">
                 <ul class="tabs">
                     <li class="tab col s3"><a class="active" href="#test11">Account settings</a></li>
@@ -94,7 +94,11 @@
                     <div th:insert="~{fragments/indexContent :: eventFragment(event=${event})}"></div>
                 </div>
             </div>
-            <div id="test33" class="col s12"></div>
+            <div id="test33" class="col s12">
+                <div th:each="event : ${ticketsRequestedByUsers}">
+                    <div th:insert="~{fragments/indexContent :: eventFragment(event=${event})}"></div>
+                </div>
+            </div>
             <div id="test44" class="col s12">
                 <!--/*@thymesVar id="users" type="java.util.List<java.dto.EventDto>"*/-->
                 <table>

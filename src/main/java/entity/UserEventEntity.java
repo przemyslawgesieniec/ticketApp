@@ -2,6 +2,7 @@ package main.java.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import main.java.dto.UserEventDto;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,4 +29,14 @@ public class UserEventEntity {
 
     @Column(name = "state")
     private Integer state = 0;
+
+
+    public UserEventDto toDto(){
+        return UserEventDto.builder()
+                .eventId(eventId)
+                .id(id)
+                .state(state)
+                .userId(userId)
+                .build();
+    }
 }

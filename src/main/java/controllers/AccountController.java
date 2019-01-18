@@ -80,12 +80,13 @@ public class AccountController {
 
         UserDto loggedInUser = userService.getUserByEmail(request.getUserPrincipal().getName());
         List<UserDto> users = userService.getAllUsers();
-//        List<EventDto> ticketsRequestedByUsers = userService.getAllTicketsRequestedByUsers();
+        List<EventDto> ticketsRequestedByUsers = eventService.getAllTicketsRequestedByUsers();
         List<EventDto> boughtTickets = userService.getAllBoughtTickets(loggedInUser);
 
         modelAndView.setViewName("account");
         modelAndView.addObject("user", loggedInUser);
         modelAndView.addObject("role", "admin");
+        modelAndView.addObject("ticketsRequestedByUsers", ticketsRequestedByUsers);
         modelAndView.addObject("boughtTickets", boughtTickets);
         modelAndView.addObject("users", users);
     }
