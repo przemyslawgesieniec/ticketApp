@@ -14,7 +14,6 @@ import java.util.List;
 @Data
 public class UserDto {
 
-    @NotNull
     private Long id;
 
     @NotNull
@@ -34,7 +33,9 @@ public class UserDto {
 
     private String reCaptcha;
 
-    private List<UserEventEntity> userEvents;
+    private boolean isEnabled;
+
+    private boolean blocked;
 
     @Override
     public boolean equals(Object o) {

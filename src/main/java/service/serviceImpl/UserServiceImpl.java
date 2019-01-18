@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<UserDto> findByEmail(String email) {
-        return userRepository.findUserByEmail(email).map(UserEntity::toDto);
+        return userRepository.findUserByEmail(email).map(UserEntity::toSaveDto);
     }
 
     @Override
@@ -104,18 +104,45 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    //todo move this to different service
     @Override
-    public void requestEvent(Long eventId, String email) {
+    public boolean requestEvent(Long eventId, String email) {
 
         UserEntity userEntity = userRepository.getUserByEmail(email);
         EventEntity eventEntity = eventRepository.getById(eventId);
 
+        Optional<UserEventEntity> userEventEntityOptional = userEventRepository.findOneByUserIdAndEventId(userEntity.getId(), eventEntity.getId());
+
+        if(userEventEntityOptional.isPresent()){
+            return false;
+        }
+        createUserEventEntity(eventEntity.getId(),userEntity.getId(),0);
+
+        return true;
+    }
+
+    //todo move this to different service
+    @Override
+    public void buyTicket(Long eventId, String email) {
+
+        UserEntity userEntity = userRepository.getUserByEmail(email);
+        EventEntity eventEntity = eventRepository.getById(eventId);
+        createUserEventEntity(eventEntity.getId(),userEntity.getId(),1);
+    }
+
+    @Override
+    public List<UserDto> getAllUsers() {
+        return userRepository.findAll().stream().map(UserEntity::toSaveDto).collect(Collectors.toList());
+    }
+
+    private void createUserEventEntity(Long eventId, Long userId, Integer state){
         UserEventEntity userEventEntity = new UserEventEntity();
-        userEventEntity.setEventId(eventEntity.getId());
-        userEventEntity.setUserId(userEntity.getId());
-        userEventEntity.setState(0);
+        userEventEntity.setEventId(eventId);
+        userEventEntity.setUserId(userId);
+        userEventEntity.setState(state);
         userEventRepository.save(userEventEntity);
     }
+
 
     private List<EventDto> getAllTicketsByState(UserDto user, int state){
         List<UserEventEntity> eventEntityList = userEventRepository.getAllByUserIdAndState(user.getId(),state);
@@ -123,7 +150,4 @@ public class UserServiceImpl implements UserService {
         List<EventEntity> requestedEventList = eventRepository.findByIdIn(eventIdList);
         return requestedEventList.stream().map(EventEntity::toDto).collect(Collectors.toList());
     }
-
-
-
 }

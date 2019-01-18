@@ -41,4 +41,28 @@ public class AccountController {
 
         return modelAndView;
     }
+
+    @RequestMapping(value = {"/admin"}, method = RequestMethod.GET)
+    public ModelAndView getAdminAccountInformation(ModelAndView modelAndView, HttpServletRequest request) {
+
+        UserDto loggedInUser = userService.getUserByEmail(request.getUserPrincipal().getName());
+        List<UserDto> users = userService.getAllUsers();
+//        List<EventDto> ticketsRequestedByUsers = userService.getAllTicketsRequestedByUsers();
+        List<EventDto> boughtTickets = userService.getAllBoughtTickets(loggedInUser);
+//
+        modelAndView.setViewName("account");
+        modelAndView.addObject("user", loggedInUser);
+        modelAndView.addObject("role", "admin");
+        modelAndView.addObject("boughtTickets", boughtTickets);
+        modelAndView.addObject("users", users);
+//        modelAndView.addObject("requestedTickets", ticketsRequestedByUsers);
+
+        return modelAndView;
+    }
+
+//    @RequestMapping(value = {"/admin"}, method = RequestMethod.GET)
+//    public ModelAndView manageUsers(ModelAndView modelAndView, HttpServletRequest request) {
+//
+//    }
+
 }

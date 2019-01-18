@@ -76,7 +76,7 @@
             </div>
         </div>
 
-        <div th:fragment="tabsAdmin(user)">
+        <div th:fragment="tabsAdmin(user,boughtTickets,users)">
             <div class="col s12 m12 l12">
                 <ul class="tabs">
                     <li class="tab col s3"><a class="active" href="#test11">Account settings</a></li>
@@ -89,13 +89,34 @@
                 Test 1
             </div>
             <div id="test22" class="col s12">
-                Test 2
+                <div th:each="event : ${boughtTickets}">
+                    <div th:insert="~{fragments/indexContent :: eventFragment(event=${event})}"></div>
+                </div>
             </div>
             <div id="test33" class="col s12">
-                Test 3
+                <div class="row">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th> ID</th>
+                            <th> NAME</th>
+                            <th> LAST NAME</th>
+                            <th> EMAIL</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="userElement : ${users}">
+                            <td th:text="${userElement.id}"></td>
+                            <td th:text="${userElement.name}"></td>
+                            <td th:text="${userElement.lastName}"></td>
+                            <td th:text="${userElement.email}"></td>
+                            <td><input type="checkbox" name="active" th:checked="${user.enabled}" /></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div id="test44" class="col s12">
-                Test 4
             </div>
         </div>
     </div>

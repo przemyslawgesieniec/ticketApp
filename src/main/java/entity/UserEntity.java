@@ -64,10 +64,21 @@ public class UserEntity {
     public UserDto toDto() {
         return UserDto.builder()
                 .id(id)
+                .isEnabled(enabled)
                 .email(email)
+                .name(firstName)
                 .lastName(lastName)
                 .password(password)
                 .build();
     }
 
+    public UserDto toSaveDto() {
+        return UserDto.builder()
+                .id(id)
+                .name(firstName)
+                .isEnabled(enabled)
+                .email(email)
+                .lastName(lastName)
+                .build();
+    }
 }

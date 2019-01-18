@@ -50,10 +50,10 @@
                         <p th:text="${event.description}"></p>
                     </div>
                     <div class="card-content">
-                        <a class="waves-effect waves-light btn">button</a>
+                        <a class="waves-effect waves-light btn">CANCEL EVENT</a>
                     </div>
                     <div class="card-action">
-                        <a href="#">This is a for admin</a>
+                        <a th:href="@{/index/admin/buyTicket(id=${event.id})}">BUY TICKET<</a>
                     </div>
                 </div>
             </div>

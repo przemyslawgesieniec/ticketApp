@@ -14,19 +14,25 @@
 </head>
 <body>
 
+
 <!--NAV BAR-->
-<nav>
-    <div th:replace="~{fragments/nav :: navUser}">
+<div th:if="${role == 'user'}">
+    <div th:insert="~{fragments/nav :: navUser}"></div>
+</div>
+<div th:if="${role == 'admin'}">
+    <div th:replace="~{fragments/nav :: navAdmin}">
         <div class="nav-wrapper">
             <a href="#" class="brand-logo">Logo</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="">Account</a></li>
+                <li><a data-target="addEventModal" class="modal-trigger">Add event</a></li>
                 <li><a href="login.html">Log out</a></li>
             </ul>
         </div>
     </div>
-</nav>
+</div>
 <!--NAV BAR-->
+
 
 <div class="container">
     <div class="spacer"></div>
@@ -39,7 +45,11 @@
             </div>
         </div>
         <div th:if="${role == 'admin'}">
-            <div th:insert="~{fragments/accountTabs :: tabsAdmin(user=${user})}"></div>
+            <div th:insert="~{fragments/accountTabs :: tabsAdmin(user=${user},
+                                boughtTickets=${boughtTickets},
+                                users=${users})}">
+
+            </div>
         </div>
     </div>
 </div>
@@ -60,7 +70,7 @@
                     <ul>
                         <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
                         <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link seds</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
                         <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
                     </ul>
                 </div>
@@ -68,7 +78,7 @@
         </div>
         <div class="footer-copyright">
             <div class="container">
-                © 2014 Copyright Text
+                © 2019 Copyright Text
                 <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
             </div>
         </div>
