@@ -40,8 +40,6 @@ public class IndexController {
         modelAndView.setViewName("index");
         modelAndView.addObject("eventList", eventDtoList);
         modelAndView.addObject("role", "admin");
-
-
         return modelAndView;
     }
 
@@ -49,7 +47,7 @@ public class IndexController {
     public ModelAndView requestTicket(ModelAndView modelAndView,
                                       @RequestParam(value = "id") Long eventId,
                                       Principal principal) {
-//        userService.requestEvent(eventId,principal.getName());
+        userService.requestEvent(eventId,principal.getName());
         return getModelAndView(modelAndView);
     }
 

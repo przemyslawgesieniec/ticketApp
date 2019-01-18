@@ -9,11 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity(name = "Event")
 @Table(name = "event")
@@ -35,12 +32,8 @@ public class EventEntity {
     @Column(name = "description")
     private String eventDescription;
 
-    @Column(name= "cost")
+    @Column(name = "cost")
     private Double eventCost;
-
-    @OneToMany(mappedBy = "event")
-    private List<UserEventEntity> users = new ArrayList<>();
-
 
     public EventDto toDto() {
         return EventDto
@@ -49,7 +42,6 @@ public class EventEntity {
                 .eventDate(eventDate)
                 .description(eventDescription)
                 .name(eventName)
-                .users(users)
                 .cost(eventCost)
                 .build();
     }

@@ -57,14 +57,6 @@ public class UserEntity {
     )
     private Set<RoleEntity> roles = new HashSet<>();
 
-//    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(
-//            name = "user_event",
-//            joinColumns = {@JoinColumn(name = "user_id")},
-//            inverseJoinColumns = {@JoinColumn(name = "event_id")}
-//    )
-    @OneToMany(mappedBy = "user")
-    private List<UserEventEntity> userEvents = new ArrayList<>();
 
     @Column(name = "enabled")
     private boolean enabled;
@@ -75,11 +67,7 @@ public class UserEntity {
                 .email(email)
                 .lastName(lastName)
                 .password(password)
-                .userEvents(userEvents)
                 .build();
     }
 
-    public void addEvent(UserEventEntity event){
-        userEvents.add(event);
-    }
 }

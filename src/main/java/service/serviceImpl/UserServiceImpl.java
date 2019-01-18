@@ -18,8 +18,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -103,25 +103,27 @@ public class UserServiceImpl implements UserService {
         return getAllTicketsByState(user,2);
     }
 
-//    @Override
-//    @Transactional
-//    public void requestEvent(Long eventId, String email) {
-//        UserEntity userEntity = userRepository.getUserByEmail(email);
-//        EventEntity eventEntity = eventRepository.getOne(eventId);
-//        UserEventEntity userEventEntity = new UserEventEntity();
-//        userEventEntity.setState(0);
-//        userEventEntity.setUser(userEntity);
-//        userEventEntity.setEvent(eventEntity);
-//        userEventRepository.save(userEventEntity);
-//        userEntity.addEvent(userEventEntity);
-//        userRepository.save(userEntity);
-//    }
+
+    @Override
+    public void requestEvent(Long eventId, String email) {
+
+        UserEntity userEntity = userRepository.getUserByEmail(email);
+        EventEntity eventEntity = eventRepository.getById(eventId);
+
+        UserEventEntity userEventEntity = new UserEventEntity();
+        userEventEntity.setEventId(eventEntity.getId());
+        userEventEntity.setUserId(userEntity.getId());
+        userEventEntity.setState(0);
+        userEventRepository.save(userEventEntity);
+    }
 
     private List<EventDto> getAllTicketsByState(UserDto user, int state){
         List<UserEventEntity> eventEntityList = userEventRepository.getAllByUserIdAndState(user.getId(),state);
-        List<Long> eventIdList = eventEntityList.stream().map(e->e.getEvent().getId()).collect(Collectors.toList());
+        List<Long> eventIdList = eventEntityList.stream().map(UserEventEntity::getEventId).collect(Collectors.toList());
         List<EventEntity> requestedEventList = eventRepository.findByIdIn(eventIdList);
         return requestedEventList.stream().map(EventEntity::toDto).collect(Collectors.toList());
     }
+
+
 
 }

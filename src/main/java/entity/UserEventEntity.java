@@ -4,31 +4,27 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
-import java.io.Serializable;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "user_event")
-public class UserEventEntity  implements Serializable {
+public class UserEventEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
+    @Column(name = "user_id")
+    private Long userId;
 
-    @ManyToOne
-    @MapsId("eventId")
-    private EventEntity event;
+    @Column(name = "event_id")
+    private Long eventId;
 
     @Column(name = "state")
     private Integer state = 0;
