@@ -86,37 +86,45 @@
                 </ul>
             </div>
             <div id="test11" class="col s12">
-                Test 1
+                <div th:each="userElement : ${users}">
+                </div>
             </div>
             <div id="test22" class="col s12">
                 <div th:each="event : ${boughtTickets}">
                     <div th:insert="~{fragments/indexContent :: eventFragment(event=${event})}"></div>
                 </div>
             </div>
-            <div id="test33" class="col s12">
-                <div class="row">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th> ID</th>
-                            <th> NAME</th>
-                            <th> LAST NAME</th>
-                            <th> EMAIL</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="userElement : ${users}">
-                            <td th:text="${userElement.id}"></td>
-                            <td th:text="${userElement.name}"></td>
-                            <td th:text="${userElement.lastName}"></td>
-                            <td th:text="${userElement.email}"></td>
-                            <td><input type="checkbox" name="active" th:checked="${user.enabled}" /></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <div id="test33" class="col s12"></div>
             <div id="test44" class="col s12">
+                <!--/*@thymesVar id="users" type="java.util.List<java.dto.EventDto>"*/-->
+                <table>
+                    <thead>
+                    <tr>
+                        <th> ID</th>
+                        <th> NAME</th>
+                        <th> LAST NAME</th>
+                        <th> EMAIL</th>
+                        <th> BLOCKED</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="userElement : ${users}">
+                        <td th:text="${userElement.id}"></td>
+                        <td th:text="${userElement.name}"></td>
+                        <td th:text="${userElement.lastName}"></td>
+                        <td th:text="${userElement.email}"></td>
+                        <td>
+                            <div th:if="${userElement.blocked}">
+                                <a th:href="@{/account/admin/unblockUser(id=${userElement.id})}" class="waves-effect waves-light btn">UNBLOCK</a>
+                            </div>
+                            <div th:unless="${userElement.blocked}">
+                                <a th:href="@{/account/admin/blockUser(id=${userElement.id})}" class="waves-effect waves-light btn">BLOCK</a>
+                            </div>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

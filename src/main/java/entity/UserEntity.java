@@ -30,6 +30,7 @@ public class UserEntity {
     public UserEntity() {
         super();
         this.enabled = false;
+        this.blocked = false;
     }
 
     @Id
@@ -61,10 +62,14 @@ public class UserEntity {
     @Column(name = "enabled")
     private boolean enabled;
 
+    @Column(name = "blocked")
+    private boolean blocked;
+
     public UserDto toDto() {
         return UserDto.builder()
                 .id(id)
                 .isEnabled(enabled)
+                .blocked(blocked)
                 .email(email)
                 .name(firstName)
                 .lastName(lastName)
@@ -76,6 +81,7 @@ public class UserEntity {
         return UserDto.builder()
                 .id(id)
                 .name(firstName)
+                .blocked(blocked)
                 .isEnabled(enabled)
                 .email(email)
                 .lastName(lastName)

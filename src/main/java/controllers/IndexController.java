@@ -26,7 +26,7 @@ public class IndexController {
     UserService userService;
 
     @RequestMapping(value = {"/user"}, method = RequestMethod.GET)
-    public ModelAndView getUserIndex(ModelAndView modelAndView, HttpServletRequest request) {
+    public ModelAndView getUserIndex(ModelAndView modelAndView) {
         modelAndView.addObject("role", "user");
         getModelAndView(modelAndView);
         return getModelAndView(modelAndView);

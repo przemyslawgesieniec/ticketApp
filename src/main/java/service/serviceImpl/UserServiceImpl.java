@@ -131,9 +131,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void blockUser(Long id) {
+
+        UserEntity userEntity = userRepository.getUserEntitiesById(id);
+        userEntity.setBlocked(true);
+        userRepository.save(userEntity);
+    }
+
+    @Override
     public List<UserDto> getAllUsers() {
         return userRepository.findAll().stream().map(UserEntity::toSaveDto).collect(Collectors.toList());
     }
+
+    @Override
+    public void unblockUser(Long id) {
+        UserEntity userEntity = userRepository.getUserEntitiesById(id);
+        userEntity.setBlocked(false);
+        userRepository.save(userEntity);
+    }
+
 
     private void createUserEventEntity(Long eventId, Long userId, Integer state){
         UserEventEntity userEventEntity = new UserEventEntity();
