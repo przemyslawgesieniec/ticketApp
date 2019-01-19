@@ -31,7 +31,7 @@ public class UserEventEntity {
     private Integer state = 0;
 
     @Column(name = "orderNumber")
-    private Long orderNumber;
+    private String orderNumber;
 
 
     public UserEventDto toDto(){

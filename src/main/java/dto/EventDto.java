@@ -2,6 +2,7 @@ package main.java.dto;
 
 import lombok.Builder;
 import lombok.Data;
+import main.java.entity.EventType;
 import main.java.entity.UserEventEntity;
 
 import java.util.Date;
@@ -16,5 +17,6 @@ public class EventDto {
     private Date eventDate;
     private String description;
     private List<UserEventEntity> users;
+    private List<EventType> eventTypes;
     private Double cost;
 }

@@ -56,7 +56,6 @@ public class MvcWebConfig implements WebMvcConfigurer {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasename("messages");
         messageSource.setDefaultEncoding("UTF-8");
-//        messageSource.setCacheSeconds(10); //reload messages every 10 seconds
         return messageSource;
     }
 

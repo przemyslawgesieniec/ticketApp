@@ -37,8 +37,6 @@ public class IndexController {
     @Autowired
     EmailServiceImpl emailService;
 
-
-
     @RequestMapping(value = {"/user"}, method = RequestMethod.GET)
     public ModelAndView getUserIndex(ModelAndView modelAndView) {
         modelAndView.addObject("role", "user");
@@ -63,7 +61,6 @@ public class IndexController {
         final boolean isRequested = eventService.requestEvent(eventId, principal.getName());
         UserEventDto userEventDto = eventService.getUserEventDtoByUserAndEvent(principal.getName(),eventId);
         EventDto eventDto = eventService.getById(eventId);
-
 
         modelAndView.addObject("role", "user");
         String message = "You already have this ticket";
