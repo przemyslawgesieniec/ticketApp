@@ -1,9 +1,15 @@
 package main.java.service.serviceImpl;
 
+import com.itextpdf.text.DocumentException;
+import main.java.dto.UserEventDto;
+import main.java.service.Invoice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+
+import javax.mail.MessagingException;
+import java.io.FileNotFoundException;
 
 @Service
 public class EmailServiceImpl {
@@ -12,6 +18,9 @@ public class EmailServiceImpl {
 
     @Autowired
     private JavaMailSender javaMailSender;
+
+    @Autowired
+    private Invoice invoice;
 
     public void sendEmail(final String emailTo,
                           final String subject,
@@ -36,5 +45,11 @@ public class EmailServiceImpl {
 
         sendEmail(emailTo,"TicketApp registration confirmation",content.toString());
 
+    }
+
+    public void sendInvoice(String email, UserEventDto userEventDto, String eventName, Double price) throws FileNotFoundException, DocumentException, MessagingException {
+
+
+        invoice.sendPdfFile(email,userEventDto,eventName,price);
     }
 }

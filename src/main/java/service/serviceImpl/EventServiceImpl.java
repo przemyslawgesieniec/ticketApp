@@ -64,6 +64,13 @@ public class EventServiceImpl {
         return true;
     }
 
+    public UserEventDto getUserEventDtoByUserAndEvent(String email, Long eventId){
+
+        UserEntity userEntity = userRepository.getUserByEmail(email);
+        Optional<UserEventEntity> userEventEntityOptional = userEventRepository.findOneByUserIdAndEventId(userEntity.getId(), eventId);
+        return userEventEntityOptional.map(UserEventEntity::toDto).orElse(null);
+    }
+
     public void buyTicket(Long eventId, String email) {
 
         UserEntity userEntity = userRepository.getUserByEmail(email);
@@ -80,9 +87,19 @@ public class EventServiceImpl {
     }
 
      public List<EventDto> getAllTicketsRequestedByUsers(){
+         List<UserEventEntity> userEventEntitiesByState = userEventRepository.findAllByState(0);
+
+//         TODO:fix
+//         for (UserEventEntity uee : userEventEntitiesByState){
+//
+//         }
 
          List<Long> eventIdList = userEventRepository.findAllByState(0).stream().map(UserEventEntity::getEventId).collect(Collectors.toList());
          return eventRepository.findByIdIn(eventIdList).stream().map(EventEntity::toDto).collect(Collectors.toList());
+     }
+
+     public EventDto getById(Long id){
+        return eventRepository.getById(id).toDto();
      }
 
 

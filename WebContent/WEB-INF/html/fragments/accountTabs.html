@@ -63,15 +63,15 @@
             </div>
             <div id="test2" class="col s12">
                 <div th:each="event : ${requestedTickets}">
-                    <div th:insert="~{fragments/indexContent :: eventFragment(event=${event})}"></div>
+                    <div th:insert="~{fragments/indexContent :: boughtOrRequestedFragment(event=${event})}"></div>
                 </div>
                 <div th:each="event : ${rejectedTickets}">
-                    <div th:insert="~{fragments/indexContent :: eventFragmentRejected(event=${event})}"></div>
+                    <div th:insert="~{fragments/indexContent :: boughtOrRequestedFragment(event=${event})}"></div>
                 </div>
             </div>
             <div id="test3" class="col s12">
                 <div th:each="event : ${boughtTickets}">
-                    <div th:insert="~{fragments/indexContent :: eventFragment(event=${event})}"></div>
+                    <div th:insert="~{fragments/indexContent :: boughtOrRequestedFragment(event=${event})}"></div>
                 </div>
             </div>
         </div>
@@ -91,12 +91,12 @@
             </div>
             <div id="test22" class="col s12">
                 <div th:each="event : ${boughtTickets}">
-                    <div th:insert="~{fragments/indexContent :: eventFragment(event=${event})}"></div>
+                    <div th:insert="~{fragments/indexContent :: boughtOrRequestedFragment(event=${event})}"></div>
                 </div>
             </div>
             <div id="test33" class="col s12">
                 <div th:each="event : ${ticketsRequestedByUsers}">
-                    <div th:insert="~{fragments/indexContent :: eventFragment(event=${event})}"></div>
+                    <div th:insert="~{fragments/indexContent :: forAcceptation(event=${event},user=${user})}"></div>
                 </div>
             </div>
             <div id="test44" class="col s12">

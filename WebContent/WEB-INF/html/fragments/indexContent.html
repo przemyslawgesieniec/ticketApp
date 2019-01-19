@@ -18,14 +18,28 @@
         <div class="col s12 m12 l12">
             <div class="card horizontal">
                 <div class="card-image">
-                    <img src="https://lorempixel.com/100/190/nature/6">
+                    <img src="https://lorempixel.com/output/nightlife-h-c-100-220-7.jpg">
                 </div>
                 <div class="card-stacked">
-                    <div class="card-content">
-                        <p th:text="${event.name}"></p>
-                    </div>
-                    <div class="card-content">
-                        <p th:text="${event.description}"></p>
+                    <div class="row">
+                        <div class="col s9 m9 l9">
+                            <div class="card-content">
+                                <p th:text="${event.name}">Event name</p>
+                            </div>
+                            <div class="card-content">
+                                <p th:text="${event.description}">Description</p>
+                            </div>
+                        </div>
+                        <div class="col s3 m3 l3">
+                            <div class="card-content">
+                                <div class="col s6 m6 l6 offset-l2 offset-m2 offset-s2">
+                                    <p th:text="${event.cost}">1000</p>
+                                </div>
+                                <div class="col s2 m2 l2">
+                                    <p>PLN</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-action">
                         <a th:href="@{/index/user/requestTicket(id=${event.id})}">REQUEST TICKET</a>
@@ -40,20 +54,31 @@
         <div class="col s12 m12 l12">
             <div class="card horizontal">
                 <div class="card-image">
-                    <img src="https://lorempixel.com/100/190/nature/6">
+                    <img src="https://lorempixel.com/output/nightlife-h-c-100-220-7.jpg">
                 </div>
                 <div class="card-stacked">
-                    <div class="card-content">
-                        <p th:text="${event.name}"></p>
-                    </div>
-                    <div class="card-content">
-                        <p th:text="${event.description}"></p>
-                    </div>
-                    <div class="card-content">
-                        <a class="waves-effect waves-light btn">CANCEL EVENT</a>
+                    <div class="row">
+                        <div class="col s9 m9 l9">
+                            <div class="card-content">
+                                <p th:text="${event.name}">Event name</p>
+                            </div>
+                            <div class="card-content">
+                                <p th:text="${event.description}">Description</p>
+                            </div>
+                        </div>
+                        <div class="col s3 m3 l3">
+                            <div class="card-content">
+                                <div class="col s6 m6 l6 offset-l2 offset-m2 offset-s2">
+                                    <p th:text="${event.cost}">1000</p>
+                                </div>
+                                <div class="col s2 m2 l2">
+                                    <p>PLN</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-action">
-                        <a th:href="@{/index/admin/buyTicket(id=${event.id})}">BUY TICKET<</a>
+                        <a th:href="@{/index/admin/buyTicket(id=${event.id})}">BUY TICKET</a>
                     </div>
                 </div>
             </div>
@@ -64,15 +89,28 @@
         <div class="col s12 m12 l12">
             <div class="card horizontal">
                 <div class="card-image">
-                    <img src="https://lorempixel.com/100/190/nature/6">
+                    <img src="https://lorempixel.com/output/nightlife-h-c-100-220-7.jpg">
                 </div>
                 <div class="card-stacked">
-                    REJECTED
-                    <div class="card-content">
-                        <p th:text="${event.name}"></p>
-                    </div>
-                    <div class="card-content">
-                        <p th:text="${event.description}"></p>
+                    <div class="row">
+                        <div class="col s9 m9 l9">
+                            <div class="card-content">
+                                <p th:text="${event.name}">Event name</p>
+                            </div>
+                            <div class="card-content">
+                                <p th:text="${event.description}">Description</p>
+                            </div>
+                        </div>
+                        <div class="col s3 m3 l3">
+                            <div class="card-content">
+                                <div class="col s6 m6 l6 offset-l2 offset-m2 offset-s2">
+                                    <p th:text="${event.cost}">1000</p>
+                                </div>
+                                <div class="col s2 m2 l2">
+                                    <p>PLN</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-action">
                         <a href="#">Retry</a>
@@ -81,7 +119,73 @@
             </div>
         </div>
     </div>
-</div>
+
+    <div th:fragment="boughtOrRequestedFragment(event)">
+        <div class="col s12 m12 l12">
+            <div class="card horizontal">
+                <div class="card-image">
+                    <img src="https://lorempixel.com/output/nightlife-h-c-100-150-7.jpg">
+                </div>
+                <div class="card-stacked">
+                    <div class="row">
+                        <div class="col s9 m9 l9">
+                            <div class="card-content">
+                                <p th:text="${event.name}">Event name</p>
+                            </div>
+                            <div class="card-content">
+                                <p th:text="${event.description}">Description</p>
+                            </div>
+                        </div>
+                        <div class="col s3 m3 l3">
+                            <div class="card-content">
+                                <div class="col s6 m6 l6 offset-l2 offset-m2 offset-s2">
+                                    <p th:text="${event.cost}">1000</p>
+                                </div>
+                                <div class="col s2 m2 l2">
+                                    <p>PLN</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="forAcceptation(event,user)">
+        <div class="col s12 m12 l12">
+            <div class="card horizontal">
+                <div class="card-image">
+                    <img src="https://lorempixel.com/output/nightlife-h-c-100-220-7.jpg">
+                </div>
+                <div class="card-stacked">
+                    <div class="row">
+                        <div class="col s9 m9 l9">
+                            <div class="card-content">
+                                <p th:text="${event.name}">Event name</p>
+                            </div>
+                            <div class="card-content">
+                                <p th:text="${event.description}">Description</p>
+                            </div>
+                        </div>
+                        <div class="col s3 m3 l3">
+                            <div class="card-content">
+                                <div class="col s6 m6 l6 offset-l2 offset-m2 offset-s2">
+                                    <p th:text="${event.cost}">1000</p>
+                                </div>
+                                <div class="col s2 m2 l2">
+                                    <p>PLN</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <a th:href="@{/index/admin/buyTicket(id=${event.id})}">ACCEPT</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

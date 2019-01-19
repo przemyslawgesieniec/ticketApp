@@ -30,11 +30,15 @@ public class UserEventEntity {
     @Column(name = "state")
     private Integer state = 0;
 
+    @Column(name = "orderNumber")
+    private Long orderNumber;
+
 
     public UserEventDto toDto(){
         return UserEventDto.builder()
                 .eventId(eventId)
                 .id(id)
+                .orderNumber(orderNumber)
                 .state(state)
                 .userId(userId)
                 .build();

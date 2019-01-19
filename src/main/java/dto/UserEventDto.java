@@ -11,5 +11,6 @@ public class UserEventDto {
     private Long userId;
     private Long eventId;
     private Integer state;
+    private Long orderNumber;
 
 }

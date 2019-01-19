@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Index page</title>
-    <meta charset="utf-8">
-    <title>Please sign in</title>
     <link rel="stylesheet" th:href="@{/css/main.css}" href="../../resources/css/main.css"/>
     <link rel="stylesheet" th:href="@{/css/materialize.min.css}" href="../../resources/css/materialize.min.css"/>
     <link rel="stylesheet" th:href="@{/css/materializeCustomizer.css}"
@@ -25,19 +23,19 @@
                 <div class=" col l12 offset-l3 offset-m3 offset-s3">
 
                     <div class="col l12 ">
-                        <h1>WELCOME TO TICKET APP</h1>
+                        <h1 th:text="#{greeting}">WELCOME TO TICKET APP</h1>
                     </div>
 
                     <div class="col l12 dashed-line">
-                       <h4>A place where you can buy ticket for your dream concert,
+                       <h4 th:text="#{welcomeBlockText}"> A place where you can buy ticket for your dream concert,
                            event or movie. All in one place.</h4>
                     </div>
 
                     <div class="col l6 m6  s12 button-wrapper">
-                        <a href="login" class="waves-effect waves-light btn-large button-large-text">LOG IN</a>
+                        <a href="login" class="waves-effect waves-light btn-large button-large-text" th:text="#{logInText}">LOG IN</a>
                     </div>
                     <div class="col l6 m6 s12 button-wrapper">
-                        <a href="register" class="waves-effect waves-light btn-large button-large-text">REGISTER</a>
+                        <a href="register" class="waves-effect waves-light btn-large button-large-text" th:text="#{registerText}">REGISTER</a>
                     </div>
 
                 </div>
