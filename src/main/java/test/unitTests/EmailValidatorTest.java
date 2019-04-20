@@ -1,5 +1,6 @@
-package main.java.validator;
+package unitTests;
 
+import main.java.validator.EmailValidator;
 import org.hibernate.validator.internal.engine.constraintvalidation.ConstraintValidatorContextImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
